@@ -27,7 +27,7 @@ export const CLINIC_CONFIG: ClinicDetails = {
   country: 'India',
   postalCode: '202001',
   tagline: 'Healthy Skin. Confident You.',
-  subTagline: `Personalized skin, hair, laser and cosmetic consultations with Dr. M. D. Khalid and Dr. Suhail Navi at ${getClinicName(CURRENT_CLINIC_SPELLING)}, Aligarh — focused on clearer skin, healthier hair and confident results.`,
+  subTagline: `Personalized skin, hair, laser and cosmetic care with Dr. M. D. Khalid and Dr. Suhail Navi at ${getClinicName(CURRENT_CLINIC_SPELLING)}, Aligarh.`,
   fullAddress: 'G8 Imperial Plaza, Near Victoria Guest House, Jamalpur, Aligarh – 202001, Uttar Pradesh, India.',
   primaryPhone: '+91 9927830955',
   secondaryPhone: '+91 8445751953',
