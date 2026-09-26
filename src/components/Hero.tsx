@@ -1,14 +1,5 @@
-import React from 'react';
-import {
-  Activity,
-  Calendar,
-  Droplets,
-  Phone,
-  ShieldCheck,
-  Sparkles,
-  UserRound,
-  Zap,
-} from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Activity, Calendar, Droplets, Phone, ShieldCheck, Sparkles, UserRound, Zap } from 'lucide-react';
 import { CLINIC_CONFIG, DOCTOR_CONFIG, SECOND_DOCTOR_CONFIG } from '../data/clinicData';
 
 interface HeroProps {
@@ -24,99 +15,125 @@ const quickTreatments = [
   { title: 'Hydrafacial', subtitle: 'Facial hydration care', Icon: Droplets },
 ];
 
-export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
-  return (
-    <section id="home" aria-label="Welcome and Introduction" className="bg-white py-4 sm:py-5 lg:py-6">
-      <div className="mx-auto max-w-[1180px] px-4 sm:px-5 lg:px-0">
-        <div className="relative overflow-hidden rounded-[24px] border border-slate-200 bg-[#edf7fa] shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
-          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-cyan-50/65" />
-          <div aria-hidden="true" className="absolute -left-16 bottom-[-70px] h-56 w-56 rounded-full bg-emerald-200/40 blur-3xl" />
-          <div aria-hidden="true" className="absolute right-[22%] top-8 h-64 w-64 rounded-full bg-sky-200/35 blur-3xl" />
+const heroDoctors = [DOCTOR_CONFIG, SECOND_DOCTOR_CONFIG];
 
-          <div className="relative grid min-h-[470px] grid-cols-1 items-stretch lg:grid-cols-[1.02fr_.98fr]">
-            <div className="z-10 flex min-w-0 flex-col justify-center px-6 py-9 sm:px-9 lg:px-12 lg:py-10">
-              <div className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-teal-200 bg-emerald-50/90 px-3.5 py-2 text-xs font-bold text-teal-800 shadow-sm">
-                <Sparkles className="h-4 w-4 text-teal-700" aria-hidden="true" />
-                <span>Advanced Dermatology &amp; Cosmetic Care</span>
+export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
+  const [activeDoctor, setActiveDoctor] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveDoctor((current) => (current + 1) % heroDoctors.length);
+    }, 4500);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  const doctor = heroDoctors[activeDoctor];
+
+  return (
+    <section id="home" aria-label="Welcome and Introduction" className="bg-[#fbfcfa] py-4 sm:py-5 lg:py-6">
+      <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-[30px] border border-emerald-100 bg-[#f7fbf7] shadow-[0_22px_60px_rgba(6,78,59,0.10)]">
+          <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(circle_at_78%_35%,rgba(187,247,208,.65),transparent_30%),radial-gradient(circle_at_20%_90%,rgba(209,250,229,.75),transparent_32%),linear-gradient(100deg,#fff_0%,#fff_42%,#f3faf5_100%)]" />
+          <div aria-hidden="true" className="absolute right-[-70px] top-[-90px] h-72 w-72 rounded-full border-[42px] border-emerald-100/65" />
+          <div aria-hidden="true" className="absolute right-[22%] top-[12%] h-64 w-64 rounded-full bg-white/60 blur-2xl" />
+
+          <div className="relative grid min-h-[560px] grid-cols-1 items-stretch lg:grid-cols-[1.05fr_.95fr]">
+            <div className="z-10 flex min-w-0 flex-col justify-center px-6 py-10 sm:px-10 lg:px-14 lg:py-12 xl:px-16">
+              <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-emerald-200 bg-white/85 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-emerald-800 shadow-sm">
+                <Sparkles className="h-4 w-4" aria-hidden="true" />
+                <span>Expert Dermatology Care</span>
               </div>
 
-              <h1 className="max-w-[650px] text-[2.65rem] font-extrabold leading-[1.03] tracking-tight text-slate-950 sm:text-5xl lg:text-[3.65rem]">
-                <span className="block">Healthy Skin.</span>
-                <span className="block bg-gradient-to-r from-teal-700 via-emerald-700 to-teal-800 bg-clip-text text-transparent">
+              <h1 className="max-w-[700px] text-slate-950">
+                <span
+                  className="block text-[3rem] font-bold leading-[0.98] tracking-[-0.035em] sm:text-[4rem] lg:text-[4.9rem]"
+                  style={{ fontFamily: 'Georgia, Times New Roman, serif' }}
+                >
+                  Healthy Skin.
+                </span>
+                <span
+                  className="mt-1 block bg-gradient-to-r from-emerald-700 via-green-600 to-teal-700 bg-clip-text text-[3rem] font-semibold leading-[1.02] tracking-[-0.045em] text-transparent sm:text-[4rem] lg:text-[4.8rem]"
+                  style={{ fontFamily: 'Segoe Script, Brush Script MT, cursive' }}
+                >
                   Confident You.
                 </span>
               </h1>
 
-              <p className="mt-4 max-w-[620px] text-base leading-relaxed text-slate-600 sm:text-[1.02rem]">
-                {CLINIC_CONFIG.subTagline}
+              <p className="mt-5 max-w-[640px] text-base leading-relaxed text-slate-600 sm:text-lg">
+                Advanced skin, hair, laser and cosmetic consultations with personalized care at {CLINIC_CONFIG.clinicName}, Aligarh.
               </p>
 
-              <div className="mt-6 grid max-w-[610px] grid-cols-2 gap-x-5 gap-y-3 sm:grid-cols-4">
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                <button
+                  type="button"
+                  onClick={onBookClick}
+                  className="inline-flex items-center justify-center gap-2.5 rounded-xl bg-emerald-700 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-emerald-900/15 transition hover:bg-emerald-800 hover:shadow-xl active:scale-[0.99]"
+                >
+                  <Calendar className="h-5 w-5" aria-hidden="true" />
+                  <span>Book Consultation</span>
+                </button>
+                <a
+                  href="#treatments"
+                  className="inline-flex items-center justify-center rounded-xl border border-emerald-300 bg-white/90 px-6 py-3.5 text-sm font-bold text-emerald-900 shadow-sm transition hover:bg-emerald-50"
+                >
+                  Explore Treatments
+                </a>
+                <a
+                  href={`tel:${CLINIC_CONFIG.primaryPhone.replace(/\s+/g, '')}`}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3.5 text-sm font-bold text-slate-700 transition hover:text-emerald-800"
+                >
+                  <Phone className="h-4 w-4" aria-hidden="true" />
+                  <span>Call Clinic</span>
+                </a>
+              </div>
+
+              <div className="mt-8 grid max-w-[660px] grid-cols-2 gap-4 sm:grid-cols-4">
                 {quickTreatments.slice(0, 4).map(({ title, Icon }) => (
-                  <div key={title} className="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-teal-100 bg-white text-teal-700 shadow-sm">
+                  <div key={title} className="flex items-center gap-2.5 text-xs font-semibold text-slate-700">
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-emerald-100 bg-white text-emerald-700 shadow-sm">
                       <Icon className="h-5 w-5" aria-hidden="true" />
                     </span>
                     <span className="leading-snug">{title}</span>
                   </div>
                 ))}
               </div>
-
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                <button
-                  type="button"
-                  onClick={onBookClick}
-                  className="inline-flex items-center justify-center gap-2.5 rounded-xl bg-teal-700 px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-teal-800 hover:shadow-lg active:scale-[0.99]"
-                >
-                  <Calendar className="h-5 w-5" aria-hidden="true" />
-                  <span>Request an Appointment</span>
-                </button>
-
-                <a
-                  href={`tel:${CLINIC_CONFIG.primaryPhone.replace(/\s+/g, '')}`}
-                  className="inline-flex items-center justify-center gap-2.5 rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-sm font-bold text-slate-800 shadow-sm transition hover:border-teal-300 hover:text-teal-800"
-                >
-                  <Phone className="h-4 w-4 text-teal-700" aria-hidden="true" />
-                  <span>Call the Clinic</span>
-                </a>
-              </div>
             </div>
 
-            <div className="relative min-h-[400px] overflow-hidden sm:min-h-[440px] lg:min-h-[470px]">
-              <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(circle_at_52%_46%,rgba(255,255,255,.9),rgba(255,255,255,0)_62%)]" />
-              <div aria-hidden="true" className="absolute left-[15%] top-[15%] h-56 w-56 rounded-full border-[34px] border-teal-100/80" />
-              <div aria-hidden="true" className="absolute right-8 top-14 grid grid-cols-5 gap-2 opacity-35">
-                {Array.from({ length: 20 }).map((_, index) => (
-                  <span key={index} className="h-1.5 w-1.5 rounded-full bg-teal-500" />
-                ))}
-              </div>
+            <div className="relative min-h-[480px] overflow-hidden lg:min-h-[560px]">
+              <div aria-hidden="true" className="absolute inset-x-[10%] bottom-[9%] top-[9%] rounded-[46%_54%_48%_52%/52%_42%_58%_48%] bg-gradient-to-br from-emerald-100 via-white to-green-50 shadow-inner" />
+              <div aria-hidden="true" className="absolute bottom-8 left-[8%] h-48 w-48 rounded-full bg-emerald-200/35 blur-3xl" />
 
-              <div className="absolute inset-0 flex items-end justify-center px-1 sm:px-4">
-                <div className="relative h-full w-full max-w-[590px]">
-                  <img
-                    src={DOCTOR_CONFIG.image}
-                    alt={DOCTOR_CONFIG.imageAlt}
-                    className="absolute bottom-0 left-[-4%] z-20 h-[93%] w-[62%] object-contain object-bottom drop-shadow-[0_18px_22px_rgba(15,23,42,0.16)] sm:left-[-1%] sm:h-[96%] lg:left-[-4%]"
-                    loading="eager"
-                    fetchPriority="high"
-                  />
-
-                  <img
-                    src={SECOND_DOCTOR_CONFIG.image}
-                    alt={SECOND_DOCTOR_CONFIG.imageAlt}
-                    className="absolute bottom-0 right-[-2%] z-10 h-[88%] w-[54%] object-contain object-bottom drop-shadow-[0_16px_20px_rgba(15,23,42,0.14)] sm:right-[0%] sm:h-[91%] lg:right-[-3%]"
-                    loading="eager"
-                  />
-
-                  <div className="absolute bottom-4 left-[6%] z-30 hidden min-w-[210px] rounded-2xl border border-white/90 bg-white/92 px-4 py-3 text-center shadow-lg backdrop-blur sm:block lg:left-[5%]">
-                    <p className="text-sm font-extrabold text-slate-900">{DOCTOR_CONFIG.name}</p>
-                    <p className="mt-0.5 text-[11px] font-medium text-slate-600">{DOCTOR_CONFIG.designation}</p>
+              <div className="absolute inset-0 flex items-end justify-center px-4 sm:px-8 lg:px-3">
+                {heroDoctors.map((item, index) => (
+                  <div
+                    key={item.name}
+                    className={`absolute inset-x-0 bottom-0 flex h-full items-end justify-center transition-all duration-700 ${index === activeDoctor ? 'translate-x-0 opacity-100' : index < activeDoctor ? '-translate-x-5 opacity-0' : 'translate-x-5 opacity-0'}`}
+                    aria-hidden={index !== activeDoctor}
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.imageAlt}
+                      className="h-[91%] w-[88%] max-w-[650px] object-contain object-bottom drop-shadow-[0_24px_30px_rgba(15,23,42,0.16)] sm:h-[94%] lg:h-[92%]"
+                      loading={index === 0 ? 'eager' : 'lazy'}
+                      fetchPriority={index === 0 ? 'high' : 'auto'}
+                    />
                   </div>
+                ))}
 
-                  <div className="absolute bottom-4 right-[1%] z-30 hidden max-w-[230px] rounded-2xl border border-white/90 bg-white/92 px-4 py-3 text-center shadow-lg backdrop-blur sm:block lg:right-[0%]">
-                    <p className="text-sm font-extrabold text-slate-900">{SECOND_DOCTOR_CONFIG.name}</p>
-                    <p className="mt-0.5 text-[11px] font-medium text-slate-600">{SECOND_DOCTOR_CONFIG.designation}</p>
-                    <p className="mt-0.5 text-[10px] text-slate-500">MD (Aligarh) · PGDCC ILAMED (Delhi)</p>
+                <div className="absolute bottom-5 left-1/2 z-20 w-[88%] max-w-[440px] -translate-x-1/2 rounded-2xl border border-white/80 bg-white/88 px-5 py-4 text-center shadow-xl backdrop-blur-md sm:bottom-7">
+                  <p className="text-lg font-black text-slate-900">{doctor.name}</p>
+                  <p className="mt-1 text-xs font-semibold text-emerald-700">{doctor.designation}</p>
+                  {activeDoctor === 1 && <p className="mt-1 text-[11px] text-slate-500">MD (Aligarh) · PGDCC ILAMED (Delhi)</p>}
+                  <div className="mt-3 flex justify-center gap-2" aria-label="Doctor carousel controls">
+                    {heroDoctors.map((item, index) => (
+                      <button
+                        key={item.name}
+                        type="button"
+                        onClick={() => setActiveDoctor(index)}
+                        className={`h-2 rounded-full transition-all ${index === activeDoctor ? 'w-7 bg-emerald-700' : 'w-2 bg-slate-300 hover:bg-emerald-300'}`}
+                        aria-label={`Show ${item.name}`}
+                      />
+                    ))}
                   </div>
                 </div>
               </div>
@@ -124,14 +141,14 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
           </div>
         </div>
 
-        <div className="relative z-20 mx-2 -mt-px grid grid-cols-2 overflow-hidden rounded-b-[22px] border border-t-0 border-slate-200 bg-white shadow-[0_14px_36px_rgba(15,23,42,0.06)] sm:grid-cols-3 lg:grid-cols-6">
+        <div className="relative z-20 mx-3 -mt-1 grid grid-cols-2 overflow-hidden rounded-b-[24px] border border-t-0 border-emerald-100 bg-white shadow-[0_16px_40px_rgba(15,23,42,0.07)] sm:grid-cols-3 lg:grid-cols-6">
           {quickTreatments.map(({ title, subtitle, Icon }, index) => (
             <a
               key={title}
               href="#treatments"
-              className={`group flex min-h-[112px] flex-col items-center justify-center px-3 py-4 text-center transition hover:bg-teal-50/70 ${index > 0 ? 'border-l border-slate-100' : ''} ${index >= 2 ? 'border-t sm:border-t-0' : ''} ${index >= 3 ? 'sm:border-t lg:border-t-0' : ''}`}
+              className={`group flex min-h-[112px] flex-col items-center justify-center px-3 py-4 text-center transition hover:bg-emerald-50/80 ${index > 0 ? 'border-l border-slate-100' : ''} ${index >= 2 ? 'border-t sm:border-t-0' : ''} ${index >= 3 ? 'sm:border-t lg:border-t-0' : ''}`}
             >
-              <span className="grid h-11 w-11 place-items-center rounded-full bg-sky-50 text-teal-700 transition group-hover:bg-teal-100">
+              <span className="grid h-11 w-11 place-items-center rounded-full bg-emerald-50 text-emerald-700 transition group-hover:bg-emerald-100">
                 <Icon className="h-5 w-5" aria-hidden="true" />
               </span>
               <span className="mt-2 text-xs font-extrabold text-slate-900">{title}</span>
