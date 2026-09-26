@@ -36,14 +36,14 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
     <section
       id="home"
       aria-label="Welcome and Introduction"
-      className="relative overflow-hidden bg-gradient-to-b from-sky-50/70 via-white to-white py-5 sm:py-7 lg:py-8"
+      className="relative overflow-hidden bg-gradient-to-b from-sky-50/70 via-white to-white py-3 sm:py-4 lg:py-5"
     >
-      <div className="mx-auto max-w-[1100px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[30px] border border-sky-100/90 bg-gradient-to-br from-white via-sky-50/35 to-white shadow-[0_22px_55px_rgba(15,23,42,0.10),0_2px_0_rgba(255,255,255,0.95)_inset]">
           <div className="pointer-events-none absolute -left-24 top-12 h-64 w-64 rounded-full bg-sky-100/55 blur-3xl" aria-hidden="true" />
           <div className="pointer-events-none absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-cyan-100/40 blur-3xl" aria-hidden="true" />
 
-          <div className="relative grid min-h-[620px] grid-cols-1 gap-8 px-5 py-8 sm:px-8 sm:py-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,.88fr)] lg:gap-10 lg:px-10 lg:py-10 xl:px-12 xl:py-12">
+          <div className="relative grid min-h-[560px] grid-cols-1 gap-8 px-5 py-6 sm:px-8 sm:py-7 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,.88fr)] lg:gap-10 lg:px-10 lg:py-8 xl:px-12 xl:py-9">
             <div className="min-w-0 self-start pt-1 text-left sm:pt-2 lg:pt-3 xl:pt-4">
               <div className="mb-3 inline-flex w-fit items-center gap-2 rounded-full border border-sky-200/70 bg-sky-100 px-3 py-1.5 text-xs font-semibold text-sky-800 shadow-sm">
                 <ShieldCheck className="h-3.5 w-3.5 text-sky-600" aria-hidden="true" />
