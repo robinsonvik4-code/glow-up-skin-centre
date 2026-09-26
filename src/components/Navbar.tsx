@@ -39,7 +39,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
   return (
     <header id="main-header" className="sticky top-0 z-40 w-full bg-transparent px-3 pt-3 sm:px-4 sm:pt-4">
       <div
-        className={`mx-auto max-w-[960px] overflow-hidden rounded-[18px] border border-white/80 bg-white/95 backdrop-blur-xl transition-all duration-300 ${
+        className={`mx-auto max-w-[1120px] overflow-hidden rounded-[18px] border border-white/80 bg-white/95 backdrop-blur-xl transition-all duration-300 ${
           isScrolled
             ? 'shadow-[0_10px_30px_rgba(15,23,42,0.16)]'
             : 'shadow-[0_10px_28px_rgba(15,23,42,0.12),0_1px_0_rgba(255,255,255,0.9)_inset]'
@@ -59,7 +59,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
               loading="eager"
             />
             <div className="min-w-0 leading-none">
-              <div className="truncate text-[16px] font-extrabold tracking-tight text-slate-900 sm:text-[17px] lg:text-[18px]">
+              <div className="truncate text-[18px] font-extrabold tracking-tight text-slate-900 sm:text-[20px] lg:text-[22px]">
                 Glow Up Skin Centre
               </div>
               <div className="mt-1 truncate text-[8px] font-semibold uppercase tracking-[0.13em] text-slate-500 sm:text-[9px]">
@@ -69,7 +69,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
           </a>
 
           <nav aria-label="Main Navigation" className="hidden items-center lg:flex">
-            <ul className="flex items-center gap-4 text-[11px] font-semibold text-slate-600 xl:gap-5">
+            <ul className="flex items-center gap-4 text-[13px] font-semibold text-slate-700 xl:gap-5 xl:text-[14px]">
               {navLinks.map((link, index) => (
                 <li key={link.label}>
                   <a
