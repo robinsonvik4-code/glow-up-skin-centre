@@ -52,7 +52,8 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
 
               <h1
                 id="hero-title"
-                className="max-w-[650px] text-4xl font-extrabold leading-[1.04] tracking-tight text-slate-900 sm:text-5xl lg:text-[56px] xl:text-[62px]"
+                className="max-w-[650px] text-4xl leading-[1.02] tracking-tight text-slate-900 sm:text-5xl lg:text-[56px] xl:text-[62px]"
+                style={{ fontFamily: "'Racing Sans One', sans-serif" }}
               >
                 <span className="block">Healthy Skin.</span>
                 <span className="block text-sky-600">Confident You.</span>
