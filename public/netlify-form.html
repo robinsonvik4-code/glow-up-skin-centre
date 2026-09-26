@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Glow Up Skin Centre Form Registration</title>
+  </head>
+  <body>
+    <!--
+      Static Netlify Forms registration page.
+      This file is copied by Vite from /public into /dist so Netlify's deploy
+      parser can always detect the form even though the visible form is React.
+    -->
+    <form
+      name="consultation-enquiry"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      action="/netlify-form.html"
+    >
+      <input type="hidden" name="form-name" value="consultation-enquiry" />
+      <p hidden>
+        <label>
+          Don't fill this out if you're human:
+          <input name="bot-field" />
+        </label>
+      </p>
+      <input type="text" name="referenceId" />
+      <input type="text" name="fullName" />
+      <input type="tel" name="mobileNumber" />
+      <input type="text" name="preferredDoctor" />
+      <input type="text" name="treatmentTitle" />
+      <input type="date" name="preferredDate" />
+      <input type="text" name="preferredTimeSlot" />
+      <textarea name="message"></textarea>
+      <input type="text" name="consent" />
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>
