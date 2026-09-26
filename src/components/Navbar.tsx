@@ -49,17 +49,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
           <a
             href="#home"
             onClick={(e) => handleLinkClick(e, '#home')}
-            className="group flex min-w-0 items-center gap-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500"
+            className="group flex min-w-0 items-center gap-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 lg:min-w-[285px]"
             aria-label={`${CLINIC_CONFIG.clinicName}, Aligarh - Back to top`}
           >
             <img
-              src="/images/glow-up-skin-centre-logo.png"
+              src="/images/glow-up-green-mark-transparent.png"
               alt="Glow Up Skin Centre logo"
               className="h-[38px] w-[38px] shrink-0 object-contain sm:h-[40px] sm:w-[40px]"
               loading="eager"
             />
             <div className="min-w-0 leading-none">
-              <div className="truncate text-[18px] font-extrabold tracking-tight text-slate-900 sm:text-[20px] lg:text-[22px]">
+              <div className="truncate text-[19px] font-extrabold tracking-[0.005em] text-slate-900 sm:text-[21px] lg:text-[24px] xl:text-[25px]">
                 Glow Up Skin Centre
               </div>
               <div className="mt-1 truncate text-[8px] font-semibold uppercase tracking-[0.13em] text-slate-500 sm:text-[9px]">
