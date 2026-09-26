@@ -86,11 +86,23 @@ export const ContactSection: React.FC = () => {
                   <div className="flex items-center gap-2"><Navigation className="h-5 w-5 text-sky-600" /><span className="text-base font-bold text-slate-900">Primary Aligarh Clinic Location</span></div>
                   <span className="rounded-full bg-sky-100 px-2.5 py-1 text-xs font-semibold text-sky-800">Postal Code: 202001</span>
                 </div>
-                <div className="mb-4 flex aspect-[16/10] items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-slate-100 p-6 text-center">
-                  <div className="space-y-3">
-                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-sky-600 text-white shadow-md"><MapPin className="h-6 w-6" /></div>
-                    <div><h4 className="text-base font-bold text-slate-900">G8 Imperial Plaza, Jamalpur</h4><p className="mt-0.5 text-xs text-slate-600">Near Victoria Guest House, Aligarh, Uttar Pradesh</p></div>
-                    <a href={CLINIC_CONFIG.mapsSearchUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-sky-700 shadow-sm transition-colors hover:bg-sky-50">Search Directions on Google Maps<ExternalLink className="h-3 w-3" /></a>
+                <div className="mb-4 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+                  <div className="aspect-[16/10] w-full bg-slate-100">
+                    <iframe
+                      title="Glow Up Skin Centre - G8 Imperial Plaza, Jamalpur, Aligarh"
+                      src="https://www.google.com/maps?q=G8+Imperial+Plaza+Near+Victoria+Guest+House+Jamalpur+Aligarh+202001+Uttar+Pradesh+India&output=embed"
+                      className="h-full w-full border-0"
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      allowFullScreen
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2 border-t border-slate-100 p-4 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                      <h4 className="text-sm font-bold text-slate-900">G8 Imperial Plaza, Jamalpur</h4>
+                      <p className="mt-0.5 text-xs text-slate-600">Near Victoria Guest House, Aligarh, Uttar Pradesh</p>
+                    </div>
+                    <a href={CLINIC_CONFIG.mapsSearchUrl} target="_blank" rel="noopener noreferrer" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border border-sky-200 bg-sky-50 px-3 py-2 text-xs font-semibold text-sky-700 transition-colors hover:bg-sky-100">Open in Google Maps<ExternalLink className="h-3 w-3" /></a>
                   </div>
                 </div>
                 <div className="space-y-2 text-xs text-slate-600">
