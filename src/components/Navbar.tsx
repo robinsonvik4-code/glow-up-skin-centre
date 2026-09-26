@@ -49,13 +49,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
           <a
             href="#home"
             onClick={(e) => handleLinkClick(e, '#home')}
-            className="group flex min-w-0 items-center gap-2.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 lg:min-w-[285px]"
+            className="group flex min-w-0 items-center gap-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 lg:min-w-[285px]"
             aria-label={`${CLINIC_CONFIG.clinicName}, Aligarh - Back to top`}
           >
             <img
-              src="/images/glow-up-green-mark-transparent.png"
+              src="/images/glow-up-logo-full-with-text.png"
               alt="Glow Up Skin Centre logo"
-              className="h-[38px] w-[38px] shrink-0 object-contain sm:h-[40px] sm:w-[40px]"
+              className="h-[52px] w-[52px] shrink-0 object-contain sm:h-[56px] sm:w-[56px]"
               loading="eager"
             />
             <div className="min-w-0 leading-none">
@@ -105,7 +105,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
             <a
               href={whatsappUrl}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="inline-flex h-9 items-center gap-1.5 rounded-xl bg-sky-600 px-3.5 text-[10px] font-semibold text-white shadow-sm transition-colors hover:bg-sky-700"
               aria-label="Chat on WhatsApp"
             >
@@ -165,7 +165,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
               <a
                 href={whatsappUrl}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-sky-600 px-3 py-2.5 text-xs font-semibold text-white"
               >
                 <MessageCircle className="h-3.5 w-3.5" />
