@@ -39,11 +39,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
       className="sticky top-0 z-40 w-full bg-white/80 px-3 py-2.5 backdrop-blur-xl sm:px-4"
     >
       <div
-        className={`mx-auto max-w-[1240px] rounded-[22px] border border-slate-200/90 bg-gradient-to-b from-white to-slate-50/80 shadow-[0_16px_34px_rgba(15,23,42,0.10),0_2px_0_rgba(255,255,255,0.98)_inset,0_-1px_0_rgba(148,163,184,0.12)_inset] transition-all duration-300 ${
-          isScrolled ? 'shadow-[0_18px_40px_rgba(15,23,42,0.14),0_2px_0_rgba(255,255,255,0.98)_inset]' : ''
+        className={`mx-auto max-w-[1180px] rounded-[24px] border border-slate-200/90 bg-gradient-to-b from-white via-slate-50 to-slate-50/90 shadow-[0_18px_40px_rgba(15,23,42,0.11),0_2px_0_rgba(255,255,255,0.98)_inset,0_-1px_0_rgba(148,163,184,0.12)_inset] transition-all duration-300 ${
+          isScrolled ? 'shadow-[0_20px_44px_rgba(15,23,42,0.15),0_2px_0_rgba(255,255,255,0.98)_inset]' : ''
         }`}
       >
-        <div className="flex min-h-[76px] items-center justify-between gap-4 px-4 sm:px-5 lg:px-6">
+        <div className="flex min-h-[82px] items-center justify-between gap-4 px-4 sm:min-h-[88px] sm:px-5 lg:px-6">
           <a
             id="brand-logo-link"
             href="#home"
@@ -51,33 +51,29 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
             className="group flex min-w-0 items-center gap-3 rounded-lg py-1 pr-2 focus:outline-none focus:ring-2 focus:ring-sky-500"
             aria-label={`${CLINIC_CONFIG.clinicName}, Aligarh - Back to top`}
           >
-            <div
-              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-700 text-white shadow-sm shadow-emerald-500/20 sm:h-12 sm:w-12"
-              title="Glow Up Skin Centre"
-            >
-              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-white" aria-hidden="true">
-                <path d="M12 7C14.5 7 17 8 18 10.5C18.8 12.5 18.2 14.5 17 16C15.8 17.5 15.5 18.5 16 20C16.5 21.5 18.5 22 19 22.5C17.5 24 15 25 12 25C7.5 25 5 21 5 16C5 11 7.5 7 12 7Z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M21 9C23.5 11 25 13.5 25 16.5C25 19 24 21 22.5 22.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeDasharray="2 2" />
-                <circle cx="21" cy="7" r="1.5" fill="currentColor" />
-              </svg>
-            </div>
+            <img
+              src="/images/glow-up-skin-centre-logo.png"
+              alt="Glow Up Skin Centre logo"
+              className="h-[52px] w-auto shrink-0 object-contain sm:h-[60px]"
+              loading="eager"
+            />
 
-            <div className="flex min-w-0 flex-col">
+            <div className="flex min-w-0 flex-col justify-center">
               <div className="hidden items-baseline gap-2 sm:flex">
-                <span className="text-2xl font-extrabold tracking-tight text-slate-900 transition-colors group-hover:text-slate-800 lg:text-[28px]">
+                <span className="text-[31px] font-extrabold tracking-tight text-slate-900 transition-colors group-hover:text-slate-800 lg:text-[34px]">
                   GLOW UP
                 </span>
-                <span className="border-l-2 border-sky-400/80 pl-2 text-base font-bold uppercase tracking-wider text-sky-600 lg:text-lg">
+                <span className="border-l-2 border-sky-400/80 pl-2 text-lg font-bold uppercase tracking-wider text-sky-600 lg:text-[19px]">
                   SKIN {CLINIC_CONFIG.spelling}
                 </span>
               </div>
 
               <div className="flex flex-col leading-tight sm:hidden">
-                <span className="text-lg font-extrabold tracking-tight text-slate-900">GLOW UP</span>
-                <span className="text-xs font-bold uppercase tracking-wider text-sky-600">SKIN {CLINIC_CONFIG.spelling}</span>
+                <span className="text-xl font-extrabold tracking-tight text-slate-900">GLOW UP</span>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-sky-600">SKIN {CLINIC_CONFIG.spelling}</span>
               </div>
 
-              <div className="mt-0.5 text-[9px] font-semibold uppercase tracking-wider text-slate-600 sm:text-[10px]">
+              <div className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-600 sm:text-[11px]">
                 {CLINIC_CONFIG.subLine}
               </div>
             </div>

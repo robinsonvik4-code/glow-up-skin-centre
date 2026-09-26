@@ -7,8 +7,8 @@ interface HeroProps {
 }
 
 const doctors = [
-  { ...DOCTOR_CONFIG, imagePosition: 'center 56%', imageWidth: 899, imageHeight: 1599 },
-  { ...SECOND_DOCTOR_CONFIG, imagePosition: 'center 40%', imageWidth: 1181, imageHeight: 1332 },
+  { ...DOCTOR_CONFIG, imageHeightClass: 'h-[76%] sm:h-[78%]' },
+  { ...SECOND_DOCTOR_CONFIG, imageHeightClass: 'h-[72%] sm:h-[74%]' },
 ];
 
 export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
@@ -38,14 +38,14 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
       aria-label="Welcome and Introduction"
       className="relative overflow-hidden bg-gradient-to-b from-sky-50/70 via-white to-white py-5 sm:py-7 lg:py-8"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[30px] border border-sky-100/90 bg-gradient-to-br from-white via-sky-50/35 to-white shadow-[0_22px_55px_rgba(15,23,42,0.10),0_2px_0_rgba(255,255,255,0.95)_inset]">
           <div className="pointer-events-none absolute -left-24 top-12 h-64 w-64 rounded-full bg-sky-100/55 blur-3xl" aria-hidden="true" />
           <div className="pointer-events-none absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-cyan-100/40 blur-3xl" aria-hidden="true" />
 
-          <div className="relative grid min-h-[560px] grid-cols-1 gap-8 px-5 py-8 sm:px-8 sm:py-10 lg:grid-cols-[minmax(0,1.06fr)_minmax(0,.94fr)] lg:gap-10 lg:px-10 lg:py-10 xl:px-12">
-            <div className="min-w-0 self-start pt-2 text-left sm:pt-3 lg:pt-5 xl:pt-6">
-              <div className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-sky-200/70 bg-sky-100 px-3 py-1.5 text-xs font-semibold text-sky-800 shadow-sm">
+          <div className="relative grid min-h-[620px] grid-cols-1 gap-8 px-5 py-8 sm:px-8 sm:py-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,.88fr)] lg:gap-10 lg:px-10 lg:py-10 xl:px-12 xl:py-12">
+            <div className="min-w-0 self-start pt-1 text-left sm:pt-2 lg:pt-3 xl:pt-4">
+              <div className="mb-3 inline-flex w-fit items-center gap-2 rounded-full border border-sky-200/70 bg-sky-100 px-3 py-1.5 text-xs font-semibold text-sky-800 shadow-sm">
                 <ShieldCheck className="h-3.5 w-3.5 text-sky-600" aria-hidden="true" />
                 <span>{CLINIC_CONFIG.subLine}</span>
               </div>
@@ -57,7 +57,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
                 {CLINIC_CONFIG.tagline}
               </h1>
 
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
+              <p className="mt-3 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
                 {CLINIC_CONFIG.subTagline}
               </p>
 
@@ -70,6 +70,17 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
                   <MapPin className="h-3.5 w-3.5 shrink-0 text-sky-600" />
                   <span>Jamalpur, Aligarh</span>
                 </div>
+              </div>
+
+              <div className="mt-6 flex flex-wrap gap-3 text-sm font-semibold text-slate-700">
+                {['Dermatology Care', 'Hair & Scalp Solutions', 'Laser & Aesthetic Care', 'Personalized Consultation'].map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-xl border border-sky-100 bg-white px-3 py-2 shadow-sm"
+                  >
+                    {item}
+                  </span>
+                ))}
               </div>
 
               <div className="mt-7 flex flex-col items-stretch gap-3.5 sm:flex-row sm:items-center">
@@ -99,7 +110,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
             </div>
 
             <div
-              className="relative mx-auto w-full max-w-[540px] self-start overflow-hidden rounded-[26px] border border-sky-100 bg-white shadow-[0_20px_48px_rgba(15,23,42,0.14)] lg:mt-0"
+              className="relative mx-auto w-full max-w-[460px] self-start overflow-hidden rounded-[26px] border border-sky-100 bg-gradient-to-b from-sky-50 via-white to-sky-50/70 shadow-[0_20px_48px_rgba(15,23,42,0.14)] lg:mt-0"
               role="group"
               aria-roledescription="carousel"
               aria-label="Glow Up Skin Centre doctors"
@@ -110,7 +121,18 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
                 if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false);
               }}
             >
-              <div className="relative aspect-[4/5] overflow-hidden bg-sky-50 sm:aspect-[5/6] lg:aspect-[4/5]">
+              <div className="relative aspect-[4/5] overflow-hidden bg-[radial-gradient(circle_at_top_right,_rgba(224,242,254,0.95),_rgba(255,255,255,1)_55%,_rgba(240,249,255,1))]">
+                <div className="pointer-events-none absolute left-4 top-6 rounded-2xl border border-white/70 bg-white/55 px-4 py-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-sky-700 shadow-lg shadow-sky-100/80 backdrop-blur-md">
+                  <div>Glow Up Skin Centre</div>
+                  <div className="mt-1 text-slate-600">Skin • Hair • Laser • Cosmetics</div>
+                </div>
+                <div className="pointer-events-none absolute right-4 top-24 max-w-[180px] rounded-2xl border border-white/70 bg-white/50 px-4 py-3 text-right text-[11px] font-semibold leading-relaxed text-slate-600 shadow-lg shadow-sky-100/70 backdrop-blur-md">
+                  Trusted dermatology and cosmetology care with a premium, patient-focused approach.
+                </div>
+                <div className="pointer-events-none absolute left-5 bottom-28 rounded-2xl border border-white/70 bg-white/50 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-sky-700 shadow-lg shadow-sky-100/70 backdrop-blur-md">
+                  Healthy Skin • Confident You
+                </div>
+
                 {doctors.map((doctor, index) => (
                   <div
                     key={doctor.name}
@@ -118,33 +140,32 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
                       index === activeDoctor
                         ? 'translate-x-0 opacity-100'
                         : index < activeDoctor
-                          ? '-translate-x-[6%] opacity-0'
-                          : 'translate-x-[6%] opacity-0'
+                          ? '-translate-x-[8%] opacity-0'
+                          : 'translate-x-[8%] opacity-0'
                     }`}
                     aria-hidden={index !== activeDoctor}
                   >
-                    <img
-                      src={doctor.image}
-                      alt={index === activeDoctor ? doctor.imageAlt : ''}
-                      loading="eager"
-                      fetchPriority={index === 0 ? 'high' : 'auto'}
-                      width={doctor.imageWidth}
-                      height={doctor.imageHeight}
-                      style={{ objectPosition: doctor.imagePosition }}
-                      className="h-full w-full object-cover"
-                    />
-                    <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-slate-950/75 via-slate-900/25 to-transparent" />
+                    <div className="absolute inset-x-0 bottom-20 top-5 flex items-end justify-center px-4">
+                      <img
+                        src={doctor.image}
+                        alt={index === activeDoctor ? doctor.imageAlt : ''}
+                        loading="eager"
+                        fetchPriority={index === 0 ? 'high' : 'auto'}
+                        className={`${doctor.imageHeightClass} w-auto max-w-[90%] object-contain drop-shadow-[0_18px_30px_rgba(15,23,42,0.18)]`}
+                      />
+                    </div>
+                    <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-slate-950/14 via-white/10 to-transparent" />
                   </div>
                 ))}
 
                 <div className="absolute inset-x-0 bottom-0 z-20 p-5 sm:p-6">
-                  <div className="max-w-[82%] text-white drop-shadow-sm">
+                  <div className="max-w-[88%] rounded-2xl border border-white/70 bg-white/75 px-4 py-3 text-slate-900 shadow-lg shadow-slate-200/60 backdrop-blur-md">
                     <div className="text-lg font-bold sm:text-xl">{doctors[activeDoctor].name}</div>
-                    <div className="mt-1 text-xs font-medium text-slate-100 sm:text-sm">
+                    <div className="mt-1 text-xs font-medium text-slate-600 sm:text-sm">
                       {doctors[activeDoctor].designation}
                     </div>
                     {activeDoctor === 1 && (
-                      <div className="mt-1 text-[11px] font-medium text-slate-200">
+                      <div className="mt-1 text-[11px] font-medium text-slate-500">
                         MD (Aligarh) · PGDCC ILAMED (Delhi)
                       </div>
                     )}
@@ -158,8 +179,8 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
                         aria-label={`Show ${doctor.name}`}
                         aria-current={index === activeDoctor ? 'true' : undefined}
                         onClick={() => setActiveDoctor(index)}
-                        className={`h-2.5 rounded-full transition-all focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white ${
-                          index === activeDoctor ? 'w-8 bg-white' : 'w-2.5 bg-white/55 hover:bg-white/85'
+                        className={`h-2.5 rounded-full transition-all focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-600 ${
+                          index === activeDoctor ? 'w-8 bg-sky-600' : 'w-2.5 bg-sky-300 hover:bg-sky-500'
                         }`}
                       />
                     ))}
