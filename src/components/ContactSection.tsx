@@ -1,200 +1,104 @@
 import React from 'react';
-import { MapPin, Phone, Clock, Navigation, ExternalLink, ShieldCheck, MessageCircle } from 'lucide-react';
-import { CLINIC_CONFIG } from '../data/clinicData';
+import { Clock, ExternalLink, MapPin, MessageCircle, Navigation, Phone, ShieldCheck } from 'lucide-react';
+import { CLINIC_CONFIG, SECOND_CLINIC_LOCATION } from '../data/clinicData';
 
 export const ContactSection: React.FC = () => {
+  const whatsapp = CLINIC_CONFIG.whatsappNumber?.replace(/\D/g, '');
+
   return (
-    <section
-      id="contact"
-      aria-label="Clinic Location and OPD Details"
-      className="py-16 sm:py-20 bg-slate-50/70 border-t border-slate-100"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mb-12">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-100 text-sky-800 text-xs font-semibold mb-3">
-            <MapPin className="w-3.5 h-3.5 text-sky-600" aria-hidden="true" />
+    <section id="contact" aria-label="Clinic Location and OPD Details" className="border-t border-slate-100 bg-slate-50/70 py-16 sm:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-12 max-w-3xl">
+          <div className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-sky-100 px-3 py-1 text-xs font-semibold text-sky-800">
+            <MapPin className="h-3.5 w-3.5 text-sky-600" aria-hidden="true" />
             <span>Clinic Location & OPD Timings</span>
           </div>
-
-          <h2
-            id="contact-heading"
-            className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight"
-          >
-            Visit & Contact Us
-          </h2>
-
-          <p className="mt-3 text-slate-600 text-base leading-relaxed">
-            In-person consultations are conducted at our dedicated clinic in Jamalpur, Aligarh. Please call to confirm doctor availability before arriving.
+          <h2 id="contact-heading" className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Visit & Contact Us</h2>
+          <p className="mt-3 text-base leading-relaxed text-slate-600">
+            In-person consultations are available at our clinic locations in Jamalpur, Aligarh and Baheri, Bareilly. Please call to confirm doctor availability before arriving.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-          <div className="lg:col-span-6 space-y-5">
-            <div className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs flex items-start gap-4">
-              <div className="w-11 h-11 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center shrink-0">
-                <MapPin className="w-5 h-5" />
-              </div>
-              <div className="flex-1">
-                <div className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                  Clinic Address
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
+          <div className="space-y-5 lg:col-span-6">
+            {[{
+              label: 'Clinic Address',
+              title: CLINIC_CONFIG.clinicName,
+              address: CLINIC_CONFIG.fullAddress,
+              map: CLINIC_CONFIG.mapsSearchUrl,
+            }, {
+              label: 'Baheri Clinic Address',
+              title: CLINIC_CONFIG.clinicName,
+              address: SECOND_CLINIC_LOCATION.fullAddress,
+              map: SECOND_CLINIC_LOCATION.mapsSearchUrl,
+            }].map((location) => (
+              <div key={location.label} className="flex items-start gap-4 rounded-2xl border border-slate-200/90 bg-white p-6 shadow-sm">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-600">
+                  <MapPin className="h-5 w-5" />
                 </div>
-                <h3 className="font-bold text-slate-900 text-base mt-1">{CLINIC_CONFIG.clinicName}</h3>
-                <p className="text-sm text-slate-700 mt-1 font-medium leading-relaxed">
-                  {CLINIC_CONFIG.fullAddress}
-                </p>
-
-                <div className="mt-4">
-                  <a
-                    href={CLINIC_CONFIG.mapsSearchUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-xs font-semibold text-white bg-sky-600 hover:bg-sky-700 px-4 py-2.5 rounded-lg shadow-xs transition-colors"
-                  >
-                    <Navigation className="w-3.5 h-3.5" />
+                <div className="flex-1">
+                  <div className="text-xs font-bold uppercase tracking-wider text-slate-400">{location.label}</div>
+                  <h3 className="mt-1 text-base font-bold text-slate-900">{location.title}</h3>
+                  <p className="mt-1 text-sm font-medium leading-relaxed text-slate-700">{location.address}</p>
+                  <a href={location.map} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-2 rounded-lg bg-sky-600 px-4 py-2.5 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-sky-700">
+                    <Navigation className="h-3.5 w-3.5" />
                     <span>Search Directions on Google Maps</span>
-                    <ExternalLink className="w-3 h-3 ml-0.5" />
+                    <ExternalLink className="h-3 w-3" />
                   </a>
                 </div>
               </div>
-            </div>
+            ))}
 
-            <div className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs flex items-start gap-4">
-              <div className="w-11 h-11 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center shrink-0">
-                <Clock className="w-5 h-5" />
-              </div>
+            <div className="flex items-start gap-4 rounded-2xl border border-slate-200/90 bg-white p-6 shadow-sm">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-600"><Clock className="h-5 w-5" /></div>
               <div className="flex-1">
-                <div className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                  OPD Consultation Timings
-                </div>
-                <h3 className="font-bold text-slate-900 text-base mt-1">Doctor OPD Timings</h3>
+                <div className="text-xs font-bold uppercase tracking-wider text-slate-400">OPD Consultation Timings</div>
+                <h3 className="mt-1 text-base font-bold text-slate-900">Doctor OPD Timings</h3>
                 <div className="mt-3 space-y-2 text-sm text-slate-700">
-                  <div className="flex items-center justify-between py-1 border-b border-slate-100">
-                    <span className="font-medium text-slate-800">Morning OPD:</span>
-                    <span className="font-semibold text-slate-900">{CLINIC_CONFIG.opdTimings.morning}</span>
-                  </div>
-                  <div className="flex items-center justify-between py-1">
-                    <span className="font-medium text-slate-800">Evening OPD:</span>
-                    <span className="font-semibold text-slate-900">{CLINIC_CONFIG.opdTimings.evening}</span>
-                  </div>
+                  <div className="flex items-center justify-between border-b border-slate-100 py-1"><span className="font-medium">Morning OPD:</span><span className="font-semibold text-slate-900">{CLINIC_CONFIG.opdTimings.morning}</span></div>
+                  <div className="flex items-center justify-between py-1"><span className="font-medium">Evening OPD:</span><span className="font-semibold text-slate-900">{CLINIC_CONFIG.opdTimings.evening}</span></div>
                 </div>
-                <p className="text-xs text-slate-500 mt-2">
-                  * Specific days are unconfirmed. Please call to confirm schedule availability for your visit.
-                </p>
+                <p className="mt-2 text-xs text-slate-500">Please call to confirm each doctor’s availability for your preferred location.</p>
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs flex items-start gap-4">
-              <div className="w-11 h-11 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center shrink-0">
-                <Phone className="w-5 h-5" />
-              </div>
+            <div className="flex items-start gap-4 rounded-2xl border border-slate-200/90 bg-white p-6 shadow-sm">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-600"><Phone className="h-5 w-5" /></div>
               <div className="flex-1">
-                <div className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                  Clinic Telephones
-                </div>
-                <h3 className="font-bold text-slate-900 text-base mt-1">Direct Phone Lines</h3>
-                <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  <a
-                    href={`tel:${CLINIC_CONFIG.primaryPhone.replace(/\s+/g, '')}`}
-                    className="flex items-center justify-between p-3 rounded-xl bg-slate-50 hover:bg-sky-50 border border-slate-200 hover:border-sky-300 transition-colors"
-                  >
-                    <div>
-                      <span className="text-[10px] text-slate-500 block uppercase font-semibold">Primary Phone</span>
-                      <span className="text-sm font-bold text-slate-900">{CLINIC_CONFIG.primaryPhone}</span>
-                    </div>
-                    <Phone className="w-4 h-4 text-sky-600" />
-                  </a>
-
-                  <a
-                    href={`tel:${CLINIC_CONFIG.secondaryPhone.replace(/\s+/g, '')}`}
-                    className="flex items-center justify-between p-3 rounded-xl bg-slate-50 hover:bg-sky-50 border border-slate-200 hover:border-sky-300 transition-colors"
-                  >
-                    <div>
-                      <span className="text-[10px] text-slate-500 block uppercase font-semibold">Secondary Phone</span>
-                      <span className="text-sm font-bold text-slate-900">{CLINIC_CONFIG.secondaryPhone}</span>
-                    </div>
-                    <Phone className="w-4 h-4 text-sky-600" />
-                  </a>
-                </div>
-
-                {CLINIC_CONFIG.whatsappNumber ? (
-                  <div className="mt-3">
-                    <a
-                      href={`https://wa.me/${CLINIC_CONFIG.whatsappNumber.replace(/\D/g, '')}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-xs font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-3 py-2 rounded-lg transition-colors border border-emerald-200"
-                    >
-                      <MessageCircle className="w-4 h-4 text-emerald-600" />
-                      <span>Connect on Official WhatsApp</span>
+                <div className="text-xs font-bold uppercase tracking-wider text-slate-400">Clinic Telephones</div>
+                <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
+                  {[CLINIC_CONFIG.primaryPhone, CLINIC_CONFIG.secondaryPhone].map((phone, i) => (
+                    <a key={phone} href={`tel:${phone.replace(/\s+/g, '')}`} className="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50 p-3 transition-colors hover:border-sky-300 hover:bg-sky-50">
+                      <div><span className="block text-[10px] font-semibold uppercase text-slate-500">{i === 0 ? 'Primary Phone' : 'Secondary Phone'}</span><span className="text-sm font-bold text-slate-900">{phone}</span></div>
+                      <Phone className="h-4 w-4 text-sky-600" />
                     </a>
-                  </div>
-                ) : (
-                  <p className="mt-2 text-[11px] text-slate-400 italic">
-                    Note: WhatsApp communication channel will be enabled once officially verified by clinic management.
-                  </p>
-                )}
+                  ))}
+                </div>
+                {whatsapp && <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2 text-xs font-semibold text-emerald-700 transition-colors hover:bg-emerald-100"><MessageCircle className="h-4 w-4" />Official WhatsApp</a>}
               </div>
             </div>
           </div>
 
-          <div className="lg:col-span-6 flex flex-col">
-            <div className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs flex-1 flex flex-col justify-between">
+          <div className="flex flex-col lg:col-span-6">
+            <div className="flex flex-1 flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-6 shadow-sm">
               <div>
-                <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
-                  <div className="flex items-center gap-2">
-                    <Navigation className="w-5 h-5 text-sky-600" />
-                    <span className="font-bold text-slate-900 text-base">Aligarh Clinic Location</span>
-                  </div>
-                  <span className="text-xs bg-sky-100 text-sky-800 font-semibold px-2.5 py-1 rounded-full">
-                    Postal Code: 202001
-                  </span>
+                <div className="mb-4 flex items-center justify-between border-b border-slate-100 pb-3">
+                  <div className="flex items-center gap-2"><Navigation className="h-5 w-5 text-sky-600" /><span className="text-base font-bold text-slate-900">Primary Aligarh Clinic Location</span></div>
+                  <span className="rounded-full bg-sky-100 px-2.5 py-1 text-xs font-semibold text-sky-800">Postal Code: 202001</span>
                 </div>
-
-                <div className="relative rounded-xl overflow-hidden border border-slate-200 bg-slate-100 aspect-[16/10] mb-4 flex items-center justify-center text-center p-6">
+                <div className="mb-4 flex aspect-[16/10] items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-slate-100 p-6 text-center">
                   <div className="space-y-3">
-                    <div className="w-12 h-12 rounded-full bg-sky-600 text-white flex items-center justify-center mx-auto shadow-md">
-                      <MapPin className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-slate-900 text-base">
-                        G8 Imperial Plaza, Jamalpur
-                      </h4>
-                      <p className="text-xs text-slate-600 mt-0.5">
-                        Near Victoria Guest House, Aligarh, Uttar Pradesh
-                      </p>
-                    </div>
-                    <a
-                      href={CLINIC_CONFIG.mapsSearchUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-xs font-semibold text-sky-700 bg-white hover:bg-sky-50 px-4 py-2 rounded-lg border border-slate-200 shadow-xs transition-colors"
-                    >
-                      <span>Search Directions on Google Maps</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
+                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-sky-600 text-white shadow-md"><MapPin className="h-6 w-6" /></div>
+                    <div><h4 className="text-base font-bold text-slate-900">G8 Imperial Plaza, Jamalpur</h4><p className="mt-0.5 text-xs text-slate-600">Near Victoria Guest House, Aligarh, Uttar Pradesh</p></div>
+                    <a href={CLINIC_CONFIG.mapsSearchUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-sky-700 shadow-sm transition-colors hover:bg-sky-50">Search Directions on Google Maps<ExternalLink className="h-3 w-3" /></a>
                   </div>
                 </div>
-
                 <div className="space-y-2 text-xs text-slate-600">
-                  <div className="flex items-center gap-2">
-                    <ShieldCheck className="w-4 h-4 text-sky-600 shrink-0" />
-                    <span>Landmark: Located near Victoria Guest House in Jamalpur.</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <ShieldCheck className="w-4 h-4 text-sky-600 shrink-0" />
-                    <span>Convenient access from central Aligarh commercial corridors.</span>
-                  </div>
+                  <div className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 shrink-0 text-sky-600" /><span>Aligarh clinic: Near Victoria Guest House, Jamalpur.</span></div>
+                  <div className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 shrink-0 text-sky-600" /><span>Baheri clinic: In front of Mahindra Tractor Agency, Bypass Road.</span></div>
                 </div>
               </div>
-
-              <div className="mt-6 pt-4 border-t border-slate-100 text-center">
-                <a
-                  href="#appointment-form"
-                  className="inline-flex items-center justify-center gap-2 w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs py-3 px-4 rounded-xl transition-colors"
-                >
-                  <span>Request In-Person Consultation</span>
-                </a>
-              </div>
+              <a href="#appointment-form" className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-xs font-semibold text-white transition-colors hover:bg-slate-800">Request In-Person Consultation</a>
             </div>
           </div>
         </div>

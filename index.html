@@ -4,29 +4,76 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GLOW UP SKIN CENTRE | Skin | Hair | Laser | Cosmetics | Aligarh</title>
-    <meta name="description" content="Skin, hair, laser and cosmetic consultations with Dr. M. D. Khalid and Dr. Suhail Navi at Glow Up Skin Centre, Aligarh." />
+    <meta
+      name="description"
+      content="Skin, hair, laser and cosmetic consultations with Dr. M. D. Khalid and Dr. Suhail Navi at Glow Up Skin Centre, Aligarh."
+    />
     <meta property="og:title" content="GLOW UP SKIN CENTRE | Aligarh, India" />
-    <meta property="og:description" content="Consultations with Dr. M. D. Khalid and Dr. Suhail Navi at Glow Up Skin Centre, Aligarh." />
+    <meta
+      property="og:description"
+      content="Consultations with Dr. M. D. Khalid and Dr. Suhail Navi at Glow Up Skin Centre, Aligarh."
+    />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="GLOW UP SKIN CENTRE" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="GLOW UP SKIN CENTRE | Aligarh, India" />
-    <meta name="twitter:description" content="Consultations with Dr. M. D. Khalid and Dr. Suhail Navi at Glow Up Skin Centre, Aligarh." />
+    <meta
+      name="twitter:description"
+      content="Consultations with Dr. M. D. Khalid and Dr. Suhail Navi at Glow Up Skin Centre, Aligarh."
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"MedicalClinic","name":"GLOW UP SKIN CENTRE","description":"Skin, hair, laser and cosmetic consultations with Dr. M. D. Khalid and Dr. Suhail Navi at Glow Up Skin Centre, Aligarh.","telephone":"+919927830955","address":{"@type":"PostalAddress","streetAddress":"G8 Imperial Plaza, Near Victoria Guest House, Jamalpur","addressLocality":"Aligarh","addressRegion":"Uttar Pradesh","postalCode":"202001","addressCountry":"India"},"medicalSpecialty":"Dermatology"}</script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalClinic",
+      "name": "GLOW UP SKIN CENTRE",
+      "description": "Skin, hair, laser and cosmetic consultations with Dr. M. D. Khalid and Dr. Suhail Navi at Glow Up Skin Centre, Aligarh.",
+      "telephone": "+919927830955",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "G8 Imperial Plaza, Near Victoria Guest House, Jamalpur",
+        "addressLocality": "Aligarh",
+        "addressRegion": "Uttar Pradesh",
+        "postalCode": "202001",
+        "addressCountry": "India"
+      },
+      "medicalSpecialty": "Dermatology",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "opens": "10:00",
+          "closes": "14:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "opens": "18:00",
+          "closes": "21:00"
+        }
+      ]
+    }
+    </script>
   </head>
   <body class="bg-white text-slate-900 antialiased font-sans">
-    <form name="appointment" data-netlify="true" netlify-honeypot="bot-field" hidden>
-      <input type="hidden" name="form-name" value="appointment" />
+    <!-- Netlify Forms prerender registration for Static React Build -->
+    <form name="consultation-enquiry" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="consultation-enquiry" />
       <input type="hidden" name="bot-field" />
       <input type="text" name="fullName" />
-      <input type="tel" name="phone" />
-      <input type="text" name="treatment" />
+      <input type="tel" name="mobileNumber" />
+      <input type="text" name="preferredDoctor" />
+      <input type="text" name="referenceId" />
+      <input type="text" name="treatmentTitle" />
       <input type="date" name="preferredDate" />
+      <input type="text" name="preferredTimeSlot" />
       <textarea name="message"></textarea>
+      <input type="checkbox" name="consent" />
     </form>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

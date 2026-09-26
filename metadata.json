@@ -1,0 +1,6 @@
+{
+  "name": "GLOW UP SKIN CENTRE",
+  "description": "Official website for Glow Up Skin Centre in Aligarh, India. Skin, hair, laser and cosmetic consultations with Dr. M. D. Khalid at G8 Imperial Plaza, Jamalpur.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

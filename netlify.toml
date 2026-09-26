@@ -1,17 +1,15 @@
-# Netlify Configuration File for Glow Up Skin Centre (Aligarh)
-# Optimized for Vite React SPA with Netlify Forms and Clean Routing
+# Glow Up Skin Centre — Netlify configuration
+# Vite React SPA + Netlify Forms
 
 [build]
   publish = "dist"
   command = "npm run build"
 
-# SPA Routing: Redirect all routes to index.html for client-side navigation
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-# Cache static assets
 [[headers]]
   for = "/assets/*"
   [headers.values]
@@ -22,10 +20,13 @@
   [headers.values]
     Cache-Control = "public, max-age=86400"
 
-# Security Headers
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
+    Cross-Origin-Opener-Policy = "same-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self'; form-action 'self'; frame-ancestors 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"

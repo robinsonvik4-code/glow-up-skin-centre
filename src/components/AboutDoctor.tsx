@@ -28,7 +28,7 @@ export const AboutDoctor: React.FC<AboutDoctorProps> = ({ onBookClick }) => (
           <article key={doctor.name} className="flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white p-5 sm:p-6 lg:p-7 shadow-lg shadow-slate-200/40">
             <div className="flex items-center gap-4 sm:gap-5">
               <div className="aspect-[5/6] w-28 shrink-0 overflow-hidden rounded-2xl border border-sky-100 bg-sky-50 sm:w-32 lg:w-36">
-                <img src={doctor.image} alt={doctor.imageAlt} loading="lazy" width={doctor.imageWidth} height={doctor.imageHeight} style={{ objectPosition: doctor.imagePosition }} className="h-full w-full object-contain object-bottom" />
+                <img src={doctor.image} alt={doctor.imageAlt} loading="lazy" width={doctor.imageWidth} height={doctor.imageHeight} style={{ objectPosition: doctor.imagePosition }} className="h-full w-full object-cover" />
               </div>
               <div className="min-w-0">
                 <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight text-slate-900">{doctor.name}</h3>

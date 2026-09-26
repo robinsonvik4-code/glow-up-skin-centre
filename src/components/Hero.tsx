@@ -1,137 +1,166 @@
 import React, { useEffect, useState } from 'react';
-import { Activity, Calendar, Droplets, Phone, ShieldCheck, Sparkles, UserRound, Zap } from 'lucide-react';
+import { Calendar, Clock, MapPin, Phone, ShieldCheck } from 'lucide-react';
 import { CLINIC_CONFIG, DOCTOR_CONFIG, SECOND_DOCTOR_CONFIG } from '../data/clinicData';
 
 interface HeroProps {
   onBookClick: () => void;
 }
 
-const quickTreatments = [
-  { title: 'Acne Control', subtitle: 'Skin consultation', Icon: UserRound },
-  { title: 'Hair Loss Treatment', subtitle: 'Hair & scalp care', Icon: Activity },
-  { title: 'Laser', subtitle: 'Laser consultation', Icon: Zap },
-  { title: 'Anti-Aging Treatment', subtitle: 'Aesthetic consultation', Icon: Sparkles },
-  { title: 'Pigmentation', subtitle: 'Tone & pigmentation', Icon: ShieldCheck },
-  { title: 'Hydrafacial', subtitle: 'Facial hydration care', Icon: Droplets },
+const doctors = [
+  { ...DOCTOR_CONFIG, imagePosition: 'center 56%', imageWidth: 899, imageHeight: 1599 },
+  { ...SECOND_DOCTOR_CONFIG, imagePosition: 'center 40%', imageWidth: 1181, imageHeight: 1332 },
 ];
-
-const heroDoctors = [DOCTOR_CONFIG, SECOND_DOCTOR_CONFIG];
 
 export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
   const [activeDoctor, setActiveDoctor] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
-    const timer = window.setInterval(() => {
-      setActiveDoctor((current) => (current + 1) % heroDoctors.length);
-    }, 4500);
-    return () => window.clearInterval(timer);
+    const query = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setReducedMotion(query.matches);
+    update();
+    query.addEventListener('change', update);
+    return () => query.removeEventListener('change', update);
   }, []);
 
-  const doctor = heroDoctors[activeDoctor];
+  useEffect(() => {
+    if (paused || reducedMotion) return;
+    const timer = window.setInterval(() => {
+      if (!document.hidden) setActiveDoctor((current) => (current + 1) % doctors.length);
+    }, 5000);
+    return () => window.clearInterval(timer);
+  }, [paused, reducedMotion]);
 
   return (
-    <section id="home" aria-label="Welcome and Introduction" className="bg-[#fbfcfa] py-4 sm:py-5 lg:py-6">
-      <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-[30px] border border-emerald-100 bg-[#f7fbf7] shadow-[0_22px_60px_rgba(6,78,59,0.10)]">
-          <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(circle_at_78%_35%,rgba(187,247,208,.65),transparent_30%),radial-gradient(circle_at_20%_90%,rgba(209,250,229,.75),transparent_32%),linear-gradient(100deg,#fff_0%,#fff_42%,#f3faf5_100%)]" />
-          <div aria-hidden="true" className="absolute right-[-70px] top-[-90px] h-72 w-72 rounded-full border-[42px] border-emerald-100/65" />
-          <div aria-hidden="true" className="absolute right-[22%] top-[12%] h-64 w-64 rounded-full bg-white/60 blur-2xl" />
+    <section
+      id="home"
+      aria-label="Welcome and Introduction"
+      className="relative overflow-hidden bg-gradient-to-b from-sky-50/70 via-white to-white py-5 sm:py-7 lg:py-8"
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-[30px] border border-sky-100/90 bg-gradient-to-br from-white via-sky-50/35 to-white shadow-[0_22px_55px_rgba(15,23,42,0.10),0_2px_0_rgba(255,255,255,0.95)_inset]">
+          <div className="pointer-events-none absolute -left-24 top-12 h-64 w-64 rounded-full bg-sky-100/55 blur-3xl" aria-hidden="true" />
+          <div className="pointer-events-none absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-cyan-100/40 blur-3xl" aria-hidden="true" />
 
-          <div className="relative grid min-h-[560px] grid-cols-1 items-stretch lg:grid-cols-[1.05fr_.95fr]">
-            <div className="z-10 flex min-w-0 flex-col justify-center px-6 py-10 sm:px-10 lg:px-14 lg:py-12 xl:px-16">
-              <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-emerald-200 bg-white/85 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-emerald-800 shadow-sm">
-                <Sparkles className="h-4 w-4" aria-hidden="true" />
-                <span>Expert Dermatology Care</span>
+          <div className="relative grid min-h-[560px] grid-cols-1 gap-8 px-5 py-8 sm:px-8 sm:py-10 lg:grid-cols-[minmax(0,1.06fr)_minmax(0,.94fr)] lg:gap-10 lg:px-10 lg:py-10 xl:px-12">
+            <div className="min-w-0 self-start pt-2 text-left sm:pt-3 lg:pt-5 xl:pt-6">
+              <div className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-sky-200/70 bg-sky-100 px-3 py-1.5 text-xs font-semibold text-sky-800 shadow-sm">
+                <ShieldCheck className="h-3.5 w-3.5 text-sky-600" aria-hidden="true" />
+                <span>{CLINIC_CONFIG.subLine}</span>
               </div>
 
-              <h1 className="max-w-[700px] text-slate-950">
-                <span
-                  className="block text-[3rem] font-bold leading-[0.98] tracking-[-0.035em] sm:text-[4rem] lg:text-[4.9rem]"
-                  style={{ fontFamily: 'Georgia, Times New Roman, serif' }}
-                >
-                  Healthy Skin.
-                </span>
-                <span
-                  className="mt-1 block bg-gradient-to-r from-emerald-700 via-green-600 to-teal-700 bg-clip-text text-[3rem] font-semibold leading-[1.02] tracking-[-0.045em] text-transparent sm:text-[4rem] lg:text-[4.8rem]"
-                  style={{ fontFamily: 'Segoe Script, Brush Script MT, cursive' }}
-                >
-                  Confident You.
-                </span>
+              <h1
+                id="hero-title"
+                className="max-w-[680px] text-4xl font-extrabold leading-[1.06] tracking-tight text-slate-900 sm:text-5xl lg:text-[58px] xl:text-[64px]"
+              >
+                {CLINIC_CONFIG.tagline}
               </h1>
 
-              <p className="mt-5 max-w-[640px] text-base leading-relaxed text-slate-600 sm:text-lg">
-                Advanced skin, hair, laser and cosmetic consultations with personalized care at {CLINIC_CONFIG.clinicName}, Aligarh.
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
+                {CLINIC_CONFIG.subTagline}
               </p>
 
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-5 flex flex-wrap gap-3 text-xs text-slate-600 sm:gap-4">
+                <div className="flex items-center gap-1.5 rounded-lg border border-slate-200/80 bg-white px-3 py-2 shadow-sm">
+                  <Clock className="h-3.5 w-3.5 shrink-0 text-sky-600" />
+                  <span>Morning & Evening OPD Timings</span>
+                </div>
+                <div className="flex items-center gap-1.5 rounded-lg border border-slate-200/80 bg-white px-3 py-2 shadow-sm">
+                  <MapPin className="h-3.5 w-3.5 shrink-0 text-sky-600" />
+                  <span>Jamalpur, Aligarh</span>
+                </div>
+              </div>
+
+              <div className="mt-7 flex flex-col items-stretch gap-3.5 sm:flex-row sm:items-center">
                 <button
+                  id="hero-request-appointment-btn"
                   type="button"
                   onClick={onBookClick}
-                  className="inline-flex items-center justify-center gap-2.5 rounded-xl bg-emerald-700 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-emerald-900/15 transition hover:bg-emerald-800 hover:shadow-xl active:scale-[0.99]"
+                  className="inline-flex items-center justify-center gap-2.5 rounded-xl bg-sky-600 px-6 py-3.5 text-base font-semibold text-white shadow-md transition-all duration-200 hover:bg-sky-700 hover:shadow-lg active:scale-[0.98]"
                 >
                   <Calendar className="h-5 w-5" aria-hidden="true" />
-                  <span>Book Consultation</span>
+                  <span>Request an Appointment</span>
                 </button>
+
                 <a
-                  href="#treatments"
-                  className="inline-flex items-center justify-center rounded-xl border border-emerald-300 bg-white/90 px-6 py-3.5 text-sm font-bold text-emerald-900 shadow-sm transition hover:bg-emerald-50"
-                >
-                  Explore Treatments
-                </a>
-                <a
+                  id="hero-call-clinic-btn"
                   href={`tel:${CLINIC_CONFIG.primaryPhone.replace(/\s+/g, '')}`}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3.5 text-sm font-bold text-slate-700 transition hover:text-emerald-800"
+                  className="inline-flex items-center justify-center gap-2.5 rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-base font-semibold text-slate-800 shadow-sm transition-colors hover:border-slate-400 hover:bg-slate-50"
                 >
-                  <Phone className="h-4 w-4" aria-hidden="true" />
-                  <span>Call Clinic</span>
+                  <Phone className="h-4 w-4 text-sky-600" aria-hidden="true" />
+                  <span>Call the Clinic</span>
                 </a>
               </div>
 
-              <div className="mt-8 grid max-w-[660px] grid-cols-2 gap-4 sm:grid-cols-4">
-                {quickTreatments.slice(0, 4).map(({ title, Icon }) => (
-                  <div key={title} className="flex items-center gap-2.5 text-xs font-semibold text-slate-700">
-                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-emerald-100 bg-white text-emerald-700 shadow-sm">
-                      <Icon className="h-5 w-5" aria-hidden="true" />
-                    </span>
-                    <span className="leading-snug">{title}</span>
-                  </div>
-                ))}
-              </div>
+              <p className="mt-3 text-xs text-slate-500">
+                Direct telephone lines: {CLINIC_CONFIG.primaryPhone} / {CLINIC_CONFIG.secondaryPhone}
+              </p>
             </div>
 
-            <div className="relative min-h-[480px] overflow-hidden lg:min-h-[560px]">
-              <div aria-hidden="true" className="absolute inset-x-[10%] bottom-[9%] top-[9%] rounded-[46%_54%_48%_52%/52%_42%_58%_48%] bg-gradient-to-br from-emerald-100 via-white to-green-50 shadow-inner" />
-              <div aria-hidden="true" className="absolute bottom-8 left-[8%] h-48 w-48 rounded-full bg-emerald-200/35 blur-3xl" />
-
-              <div className="absolute inset-0 flex items-end justify-center px-4 sm:px-8 lg:px-3">
-                {heroDoctors.map((item, index) => (
+            <div
+              className="relative mx-auto w-full max-w-[540px] self-start overflow-hidden rounded-[26px] border border-sky-100 bg-white shadow-[0_20px_48px_rgba(15,23,42,0.14)] lg:mt-0"
+              role="group"
+              aria-roledescription="carousel"
+              aria-label="Glow Up Skin Centre doctors"
+              onMouseEnter={() => setPaused(true)}
+              onMouseLeave={() => setPaused(false)}
+              onFocusCapture={() => setPaused(true)}
+              onBlurCapture={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false);
+              }}
+            >
+              <div className="relative aspect-[4/5] overflow-hidden bg-sky-50 sm:aspect-[5/6] lg:aspect-[4/5]">
+                {doctors.map((doctor, index) => (
                   <div
-                    key={item.name}
-                    className={`absolute inset-x-0 bottom-0 flex h-full items-end justify-center transition-all duration-700 ${index === activeDoctor ? 'translate-x-0 opacity-100' : index < activeDoctor ? '-translate-x-5 opacity-0' : 'translate-x-5 opacity-0'}`}
+                    key={doctor.name}
+                    className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+                      index === activeDoctor
+                        ? 'translate-x-0 opacity-100'
+                        : index < activeDoctor
+                          ? '-translate-x-[6%] opacity-0'
+                          : 'translate-x-[6%] opacity-0'
+                    }`}
                     aria-hidden={index !== activeDoctor}
                   >
                     <img
-                      src={item.image}
-                      alt={item.imageAlt}
-                      className="h-[91%] w-[88%] max-w-[650px] object-contain object-bottom drop-shadow-[0_24px_30px_rgba(15,23,42,0.16)] sm:h-[94%] lg:h-[92%]"
-                      loading={index === 0 ? 'eager' : 'lazy'}
+                      src={doctor.image}
+                      alt={index === activeDoctor ? doctor.imageAlt : ''}
+                      loading="eager"
                       fetchPriority={index === 0 ? 'high' : 'auto'}
+                      width={doctor.imageWidth}
+                      height={doctor.imageHeight}
+                      style={{ objectPosition: doctor.imagePosition }}
+                      className="h-full w-full object-cover"
                     />
+                    <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-slate-950/75 via-slate-900/25 to-transparent" />
                   </div>
                 ))}
 
-                <div className="absolute bottom-5 left-1/2 z-20 w-[88%] max-w-[440px] -translate-x-1/2 rounded-2xl border border-white/80 bg-white/88 px-5 py-4 text-center shadow-xl backdrop-blur-md sm:bottom-7">
-                  <p className="text-lg font-black text-slate-900">{doctor.name}</p>
-                  <p className="mt-1 text-xs font-semibold text-emerald-700">{doctor.designation}</p>
-                  {activeDoctor === 1 && <p className="mt-1 text-[11px] text-slate-500">MD (Aligarh) · PGDCC ILAMED (Delhi)</p>}
-                  <div className="mt-3 flex justify-center gap-2" aria-label="Doctor carousel controls">
-                    {heroDoctors.map((item, index) => (
+                <div className="absolute inset-x-0 bottom-0 z-20 p-5 sm:p-6">
+                  <div className="max-w-[82%] text-white drop-shadow-sm">
+                    <div className="text-lg font-bold sm:text-xl">{doctors[activeDoctor].name}</div>
+                    <div className="mt-1 text-xs font-medium text-slate-100 sm:text-sm">
+                      {doctors[activeDoctor].designation}
+                    </div>
+                    {activeDoctor === 1 && (
+                      <div className="mt-1 text-[11px] font-medium text-slate-200">
+                        MD (Aligarh) · PGDCC ILAMED (Delhi)
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="mt-4 flex gap-2" aria-label="Select doctor image">
+                    {doctors.map((doctor, index) => (
                       <button
-                        key={item.name}
+                        key={doctor.name}
                         type="button"
+                        aria-label={`Show ${doctor.name}`}
+                        aria-current={index === activeDoctor ? 'true' : undefined}
                         onClick={() => setActiveDoctor(index)}
-                        className={`h-2 rounded-full transition-all ${index === activeDoctor ? 'w-7 bg-emerald-700' : 'w-2 bg-slate-300 hover:bg-emerald-300'}`}
-                        aria-label={`Show ${item.name}`}
+                        className={`h-2.5 rounded-full transition-all focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white ${
+                          index === activeDoctor ? 'w-8 bg-white' : 'w-2.5 bg-white/55 hover:bg-white/85'
+                        }`}
                       />
                     ))}
                   </div>
@@ -139,22 +168,6 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="relative z-20 mx-3 -mt-1 grid grid-cols-2 overflow-hidden rounded-b-[24px] border border-t-0 border-emerald-100 bg-white shadow-[0_16px_40px_rgba(15,23,42,0.07)] sm:grid-cols-3 lg:grid-cols-6">
-          {quickTreatments.map(({ title, subtitle, Icon }, index) => (
-            <a
-              key={title}
-              href="#treatments"
-              className={`group flex min-h-[112px] flex-col items-center justify-center px-3 py-4 text-center transition hover:bg-emerald-50/80 ${index > 0 ? 'border-l border-slate-100' : ''} ${index >= 2 ? 'border-t sm:border-t-0' : ''} ${index >= 3 ? 'sm:border-t lg:border-t-0' : ''}`}
-            >
-              <span className="grid h-11 w-11 place-items-center rounded-full bg-emerald-50 text-emerald-700 transition group-hover:bg-emerald-100">
-                <Icon className="h-5 w-5" aria-hidden="true" />
-              </span>
-              <span className="mt-2 text-xs font-extrabold text-slate-900">{title}</span>
-              <span className="mt-1 text-[10px] text-slate-500">{subtitle}</span>
-            </a>
-          ))}
         </div>
       </div>
     </section>
