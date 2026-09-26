@@ -7,8 +7,8 @@ interface HeroProps {
 }
 
 const doctors = [
-  { ...DOCTOR_CONFIG, imageHeightClass: 'h-[76%] sm:h-[78%]' },
-  { ...SECOND_DOCTOR_CONFIG, imageHeightClass: 'h-[72%] sm:h-[74%]' },
+  { ...DOCTOR_CONFIG, imageHeightClass: 'h-[66%] sm:h-[68%]' },
+  { ...SECOND_DOCTOR_CONFIG, imageHeightClass: 'h-[63%] sm:h-[65%]' },
 ];
 
 export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
@@ -38,7 +38,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
       aria-label="Welcome and Introduction"
       className="relative overflow-hidden bg-gradient-to-b from-sky-50/70 via-white to-white py-5 sm:py-7 lg:py-8"
     >
-      <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1100px] px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[30px] border border-sky-100/90 bg-gradient-to-br from-white via-sky-50/35 to-white shadow-[0_22px_55px_rgba(15,23,42,0.10),0_2px_0_rgba(255,255,255,0.95)_inset]">
           <div className="pointer-events-none absolute -left-24 top-12 h-64 w-64 rounded-full bg-sky-100/55 blur-3xl" aria-hidden="true" />
           <div className="pointer-events-none absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-cyan-100/40 blur-3xl" aria-hidden="true" />
@@ -52,14 +52,20 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
 
               <h1
                 id="hero-title"
-                className="max-w-[680px] text-4xl font-extrabold leading-[1.06] tracking-tight text-slate-900 sm:text-5xl lg:text-[58px] xl:text-[64px]"
+                className="max-w-[650px] text-4xl font-extrabold leading-[1.04] tracking-tight text-slate-900 sm:text-5xl lg:text-[56px] xl:text-[62px]"
               >
-                {CLINIC_CONFIG.tagline}
+                <span className="block">Healthy Skin.</span>
+                <span className="block text-sky-600">Confident You.</span>
               </h1>
 
-              <p className="mt-3 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
-                {CLINIC_CONFIG.subTagline}
-              </p>
+              <div className="mt-4 max-w-[650px] space-y-1.5">
+                <p className="text-base font-medium leading-relaxed text-slate-700 sm:text-[17px]">
+                  Personalized skin, hair, laser and cosmetic care with Dr. M. D. Khalid and Dr. Suhail Navi.
+                </p>
+                <p className="text-sm leading-relaxed text-slate-500 sm:text-[15px]">
+                  At <span className="font-semibold text-slate-700">GLOW UP SKIN CENTRE, Aligarh</span> — focused on clearer skin, healthier hair and confident results.
+                </p>
+              </div>
 
               <div className="mt-5 flex flex-wrap gap-3 text-xs text-slate-600 sm:gap-4">
                 <div className="flex items-center gap-1.5 rounded-lg border border-slate-200/80 bg-white px-3 py-2 shadow-sm">
@@ -110,7 +116,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
             </div>
 
             <div
-              className="relative mx-auto w-full max-w-[460px] self-start overflow-hidden rounded-[26px] border border-sky-100 bg-gradient-to-b from-sky-50 via-white to-sky-50/70 shadow-[0_20px_48px_rgba(15,23,42,0.14)] lg:mt-0"
+              className="relative mx-auto w-full max-w-[410px] self-start overflow-hidden rounded-[26px] border border-sky-100 bg-gradient-to-b from-sky-50 via-white to-sky-50/70 shadow-[0_20px_48px_rgba(15,23,42,0.14)] lg:mt-0"
               role="group"
               aria-roledescription="carousel"
               aria-label="Glow Up Skin Centre doctors"
