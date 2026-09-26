@@ -8,7 +8,7 @@ interface HeroProps {
 
 const doctors = [
   { ...DOCTOR_CONFIG, imageHeightClass: 'h-[66%] sm:h-[68%]' },
-  { ...SECOND_DOCTOR_CONFIG, imageHeightClass: 'h-[63%] sm:h-[65%]' },
+  { ...SECOND_DOCTOR_CONFIG, imageHeightClass: 'h-[76%] sm:h-[78%]' },
 ];
 
 export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
@@ -36,15 +36,15 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
     <section
       id="home"
       aria-label="Welcome and Introduction"
-      className="relative overflow-hidden bg-gradient-to-b from-sky-50/70 via-white to-white py-3 sm:py-4 lg:py-5"
+      className="relative overflow-hidden bg-gradient-to-b from-sky-50/70 via-white to-white py-0.5 sm:py-1 lg:py-1"
     >
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[30px] border border-sky-100/90 bg-gradient-to-br from-white via-sky-50/35 to-white shadow-[0_22px_55px_rgba(15,23,42,0.10),0_2px_0_rgba(255,255,255,0.95)_inset]">
           <div className="pointer-events-none absolute -left-24 top-12 h-64 w-64 rounded-full bg-sky-100/55 blur-3xl" aria-hidden="true" />
           <div className="pointer-events-none absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-cyan-100/40 blur-3xl" aria-hidden="true" />
 
-          <div className="relative grid min-h-[560px] grid-cols-1 gap-8 px-5 py-6 sm:px-8 sm:py-7 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,.88fr)] lg:gap-10 lg:px-10 lg:py-8 xl:px-12 xl:py-9">
-            <div className="min-w-0 self-start pt-1 text-left sm:pt-2 lg:pt-3 xl:pt-4">
+          <div className="relative grid min-h-[448px] grid-cols-1 gap-4 px-5 py-3 sm:px-8 sm:py-4 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,.88fr)] lg:gap-6 lg:px-10 lg:py-4 xl:px-12 xl:py-4">
+            <div className="min-w-0 self-start pt-0.5 text-left sm:pt-1 lg:pt-2 xl:pt-2">
               <div className="mb-3 inline-flex w-fit items-center gap-2 rounded-full border border-sky-200/70 bg-sky-100 px-3 py-1.5 text-xs font-semibold text-sky-800 shadow-sm">
                 <ShieldCheck className="h-3.5 w-3.5 text-sky-600" aria-hidden="true" />
                 <span>{CLINIC_CONFIG.subLine}</span>
@@ -59,7 +59,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
                 <span className="block text-sky-600">Confident You.</span>
               </h1>
 
-              <div className="mt-4 max-w-[650px] space-y-1.5">
+              <div className="mt-3 max-w-[650px] space-y-1">
                 <p className="text-base font-medium leading-relaxed text-slate-700 sm:text-[17px]">
                   Personalized skin, hair, laser and cosmetic care with Dr. M. D. Khalid and Dr. Suhail Navi.
                 </p>
@@ -68,7 +68,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
                 </p>
               </div>
 
-              <div className="mt-5 flex flex-wrap gap-3 text-xs text-slate-600 sm:gap-4">
+              <div className="mt-4 flex flex-wrap gap-3 text-xs text-slate-600 sm:gap-4">
                 <div className="flex items-center gap-1.5 rounded-lg border border-slate-200/80 bg-white px-3 py-2 shadow-sm">
                   <Clock className="h-3.5 w-3.5 shrink-0 text-sky-600" />
                   <span>Morning & Evening OPD Timings</span>
@@ -79,7 +79,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
                 </div>
               </div>
 
-              <div className="mt-6 flex flex-wrap gap-3 text-sm font-semibold text-slate-700">
+              <div className="mt-5 flex flex-wrap gap-3 text-sm font-semibold text-slate-700">
                 {['Dermatology Care', 'Hair & Scalp Solutions', 'Laser & Aesthetic Care', 'Personalized Consultation'].map((item) => (
                   <span
                     key={item}
@@ -90,7 +90,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
                 ))}
               </div>
 
-              <div className="mt-7 flex flex-col items-stretch gap-3.5 sm:flex-row sm:items-center">
+              <div className="mt-5 flex flex-col items-stretch gap-3.5 sm:flex-row sm:items-center">
                 <button
                   id="hero-request-appointment-btn"
                   type="button"
@@ -111,7 +111,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
                 </a>
               </div>
 
-              <p className="mt-3 text-xs text-slate-500">
+              <p className="mt-2 text-xs text-slate-500">
                 Direct telephone lines: {CLINIC_CONFIG.primaryPhone} / {CLINIC_CONFIG.secondaryPhone}
               </p>
             </div>
@@ -128,7 +128,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
                 if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false);
               }}
             >
-              <div className="relative aspect-[4/5] overflow-hidden bg-[radial-gradient(circle_at_top_right,_rgba(224,242,254,0.95),_rgba(255,255,255,1)_55%,_rgba(240,249,255,1))]">
+              <div className="relative aspect-[4/4.55] overflow-hidden bg-[radial-gradient(circle_at_top_right,_rgba(224,242,254,0.95),_rgba(255,255,255,1)_55%,_rgba(240,249,255,1))]">
                 <div className="pointer-events-none absolute left-4 top-6 rounded-2xl border border-white/70 bg-white/55 px-4 py-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-sky-700 shadow-lg shadow-sky-100/80 backdrop-blur-md">
                   <div>Glow Up Skin Centre</div>
                   <div className="mt-1 text-slate-600">Skin • Hair • Laser • Cosmetics</div>
