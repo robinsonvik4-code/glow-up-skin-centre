@@ -39,7 +39,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
       className="sticky top-0 z-40 w-full bg-white/80 px-3 py-2.5 backdrop-blur-xl sm:px-4"
     >
       <div
-        className={`mx-auto max-w-[1180px] rounded-[24px] border border-slate-200/90 bg-gradient-to-b from-white via-slate-50 to-slate-50/90 shadow-[0_18px_40px_rgba(15,23,42,0.11),0_2px_0_rgba(255,255,255,0.98)_inset,0_-1px_0_rgba(148,163,184,0.12)_inset] transition-all duration-300 ${
+        className={`mx-auto max-w-[1120px] rounded-[24px] border border-slate-200/90 bg-gradient-to-b from-white via-slate-50 to-slate-50/90 shadow-[0_18px_40px_rgba(15,23,42,0.11),0_2px_0_rgba(255,255,255,0.98)_inset,0_-1px_0_rgba(148,163,184,0.12)_inset] transition-all duration-300 ${
           isScrolled ? 'shadow-[0_20px_44px_rgba(15,23,42,0.15),0_2px_0_rgba(255,255,255,0.98)_inset]' : ''
         }`}
       >
@@ -54,13 +54,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
             <img
               src="/images/glow-up-skin-centre-logo.png"
               alt="Glow Up Skin Centre logo"
-              className="h-[52px] w-auto shrink-0 object-contain sm:h-[60px]"
+              className="h-[58px] w-auto shrink-0 object-contain sm:h-[66px]"
               loading="eager"
             />
 
             <div className="flex min-w-0 flex-col justify-center">
               <div className="hidden items-baseline gap-2 sm:flex">
-                <span className="text-[31px] font-extrabold tracking-tight text-slate-900 transition-colors group-hover:text-slate-800 lg:text-[34px]">
+                <span className="text-[33px] font-extrabold tracking-tight text-slate-900 transition-colors group-hover:text-slate-800 lg:text-[36px]">
                   GLOW UP
                 </span>
                 <span className="border-l-2 border-sky-400/80 pl-2 text-lg font-bold uppercase tracking-wider text-sky-600 lg:text-[19px]">
