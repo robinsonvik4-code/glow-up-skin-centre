@@ -52,7 +52,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
             aria-label={`${CLINIC_CONFIG.clinicName}, Aligarh - Back to top`}
           >
             <img
-              src="/images/glow-up-skin-centre-logo.png"
+              src="/images/glow-up-skin-centre-logo.jpg"
               alt="Glow Up Skin Centre logo"
               className="h-[58px] w-auto shrink-0 object-contain sm:h-[66px]"
               loading="eager"
