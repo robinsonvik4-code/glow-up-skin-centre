@@ -42,13 +42,19 @@ export const AppointmentForm: React.FC<AppointmentFormProps> = ({ selectedTreatm
       newErrors.fullName = 'Please enter your full name.';
     } else if (formData.fullName.trim().length < 2) {
       newErrors.fullName = 'Full name must be at least 2 characters.';
+    } else if (formData.fullName.trim().length > 80) {
+      newErrors.fullName = 'Full name is too long.';
     }
 
     const cleanedPhone = formData.mobileNumber.replace(/\D/g, '');
     if (!formData.mobileNumber.trim()) {
       newErrors.mobileNumber = 'Mobile number is required.';
-    } else if (cleanedPhone.length < 10) {
-      newErrors.mobileNumber = 'Please enter a valid 10-digit mobile number.';
+    } else if (!/^[6-9]\d{9}$/.test(cleanedPhone)) {
+      newErrors.mobileNumber = 'Please enter a valid 10-digit Indian mobile number.';
+    }
+
+    if (formData.message.trim().length > 600) {
+      newErrors.message = 'Please keep the note within 600 characters.';
     }
 
     if (!formData.treatmentTitle) {
@@ -93,9 +99,14 @@ export const AppointmentForm: React.FC<AppointmentFormProps> = ({ selectedTreatm
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setServerError(null);
+
+    const submittedForm = e.currentTarget;
+    const rawBotField = new FormData(submittedForm).get('bot-field');
+    const botFieldValue = typeof rawBotField === 'string' ? rawBotField.trim() : '';
+    if (botFieldValue) return;
 
     if (!validate()) {
       return;
@@ -113,20 +124,20 @@ export const AppointmentForm: React.FC<AppointmentFormProps> = ({ selectedTreatm
       const generatedRef = `GUC-${Math.floor(100000 + Math.random() * 900000)}`;
       const formPayload = new URLSearchParams({
         'form-name': 'consultation-enquiry',
+        'bot-field': botFieldValue,
         referenceId: generatedRef,
-        fullName: formData.fullName,
-        mobileNumber: formData.mobileNumber,
+        fullName: formData.fullName.trim(),
+        mobileNumber: formData.mobileNumber.trim(),
         preferredDoctor: formData.preferredDoctor,
         treatmentTitle: formData.treatmentTitle,
         preferredDate: formData.preferredDate,
         preferredTimeSlot: formData.preferredTimeSlot,
-        message: formData.message || 'None',
-        consent: formData.consent ? 'Agreed' : 'No',
+        message: formData.message.trim(),
+        consent: formData.consent ? 'yes' : 'no',
       });
 
-      // Post to the static Netlify form-registration page so the submission
-      // is handled by Netlify Forms after deployment.
-      const response = await fetch('/netlify-form.html', {
+      // Standard Netlify Forms POST to the detected static form.
+      const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: formPayload.toString(),
@@ -163,7 +174,7 @@ export const AppointmentForm: React.FC<AppointmentFormProps> = ({ selectedTreatm
 
   // WhatsApp pre-filled notification text
   const whatsappAppointmentLink = submittedData
-    ? `https://wa.me/919927830955?text=${encodeURIComponent(
+    ? `https://wa.me/918218634945?text=${encodeURIComponent(
         `Hello Glow Up Skin Centre,\n` +
         `I have booked an appointment online (Ref: ${referenceId}):\n\n` +
         `• Patient Name: ${submittedData.fullName}\n` +
@@ -375,6 +386,8 @@ export const AppointmentForm: React.FC<AppointmentFormProps> = ({ selectedTreatm
                     value={formData.fullName}
                     onChange={handleChange}
                     placeholder="e.g. Mohd Rashid"
+                    maxLength={80}
+                    autoComplete="name"
                     className={`w-full px-4 py-3 bg-white rounded-xl border text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 transition-all ${
                       errors.fullName
                         ? 'border-red-400 focus:ring-red-200'
@@ -398,6 +411,9 @@ export const AppointmentForm: React.FC<AppointmentFormProps> = ({ selectedTreatm
                     value={formData.mobileNumber}
                     onChange={handleChange}
                     placeholder="10-digit mobile number"
+                    inputMode="numeric"
+                    maxLength={15}
+                    autoComplete="tel"
                     className={`w-full px-4 py-3 bg-white rounded-xl border text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 transition-all ${
                       errors.mobileNumber
                         ? 'border-red-400 focus:ring-red-200'
@@ -519,11 +535,15 @@ export const AppointmentForm: React.FC<AppointmentFormProps> = ({ selectedTreatm
                   id="message"
                   name="message"
                   rows={3}
+                  maxLength={600}
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Share details about duration, prior treatments or specific questions..."
-                  className="w-full px-4 py-3 bg-white rounded-xl border border-slate-300 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:border-sky-500 focus:ring-sky-100 transition-all resize-none"
+                  className={`w-full px-4 py-3 bg-white rounded-xl border text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 transition-all resize-none ${errors.message ? 'border-red-400 focus:ring-red-200' : 'border-slate-300 focus:border-sky-500 focus:ring-sky-100'}`}
                 />
+                {errors.message && (
+                  <p className="mt-1 text-xs text-red-600">{errors.message}</p>
+                )}
               </div>
 
               {/* Consent Checkbox */}
