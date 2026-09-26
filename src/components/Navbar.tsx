@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Menu, X, Calendar, ChevronRight, Phone } from 'lucide-react';
 import { CLINIC_CONFIG } from '../data/clinicData';
 
@@ -11,9 +11,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -30,92 +28,68 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
     setIsMobileMenuOpen(false);
     const element = document.querySelector(href);
     if (element) {
-      const navOffset = 80;
+      const navOffset = 92;
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navOffset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
+      window.scrollTo({ top: elementPosition + window.pageYOffset - navOffset, behavior: 'smooth' });
     }
   };
 
   return (
     <header
       id="main-header"
-      className={`sticky top-0 z-40 w-full transition-all duration-300 bg-white ${isScrolled ? 'shadow-md py-2.5 border-b border-slate-100' : 'py-3 md:py-3.5 border-b border-slate-100'}`}
+      className={`sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md transition-all duration-300 ${isScrolled ? 'shadow-lg shadow-slate-900/5 border-b border-emerald-100 py-2' : 'border-b border-slate-100 py-2.5'}`}
     >
-      <div className="max-w-[1180px] mx-auto px-4 sm:px-5 lg:px-0">
-        <div className="flex items-center justify-between">
+      <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between gap-4">
           <a
             id="brand-logo-link"
             href="#home"
-            className="group flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-teal-500 rounded-lg py-1 pr-2"
+            className="group flex min-w-0 items-center gap-3.5 rounded-xl py-1 focus:outline-none focus:ring-2 focus:ring-emerald-500 lg:flex-1"
             aria-label={`${CLINIC_CONFIG.clinicName}, Aligarh - Back to top`}
           >
-            <div
-              className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-700 text-white flex items-center justify-center shrink-0 shadow-sm shadow-emerald-500/20"
-              title="Glow Up Aesthetic Profile Emblem (Official vector asset in review)"
-            >
-              <svg
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-6 h-6 text-white"
-                aria-hidden="true"
-              >
-                <path
-                  d="M12 7C14.5 7 17 8 18 10.5C18.8 12.5 18.2 14.5 17 16C15.8 17.5 15.5 18.5 16 20C16.5 21.5 18.5 22 19 22.5C17.5 24 15 25 12 25C7.5 25 5 21 5 16C5 11 7.5 7 12 7Z"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M21 9C23.5 11 25 13.5 25 16.5C25 19 24 21 22.5 22.5"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeDasharray="2 2"
-                />
-                <circle cx="21" cy="7" r="1.5" fill="currentColor" />
+            <div className="relative grid h-14 w-14 shrink-0 place-items-center overflow-hidden rounded-full border border-emerald-200 bg-white shadow-md shadow-emerald-900/10 sm:h-16 sm:w-16">
+              <svg viewBox="0 0 64 64" className="h-11 w-11 sm:h-12 sm:w-12" aria-hidden="true">
+                <defs>
+                  <linearGradient id="leafGreen" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stopColor="#34d399" />
+                    <stop offset="1" stopColor="#047857" />
+                  </linearGradient>
+                </defs>
+                <path d="M35 8c4 8 5 15 2 21-2 4-1 7 3 10-2 8-8 13-17 15-8-8-10-18-5-27 4-7 10-12 17-19Z" fill="url(#leafGreen)" />
+                <path d="M24 46c7-7 11-16 12-27M24 38c4-2 8-5 11-9M23 31c4-2 8-6 11-10" fill="none" stroke="#d1fae5" strokeWidth="2.3" strokeLinecap="round" />
+                <path d="M39 31c4 2 6 5 6 8-2 1-4 1-6 0 3 2 4 4 3 6-4 1-8 0-11-2" fill="none" stroke="#047857" strokeWidth="2" strokeLinecap="round" />
+                <path d="M13 47c8 9 24 12 38 3" fill="none" stroke="#059669" strokeWidth="2.2" strokeLinecap="round" />
               </svg>
             </div>
 
-            <div className="flex flex-col">
-              <div className="hidden sm:flex items-baseline gap-2">
-                <span className="font-extrabold text-2xl lg:text-3xl tracking-tight text-slate-900 group-hover:text-slate-800 transition-colors">
+            <div className="min-w-0 leading-none">
+              <div className="hidden sm:block whitespace-nowrap">
+                <span className="block text-[1.9rem] font-black leading-[0.95] tracking-[-0.045em] text-emerald-800 transition-colors group-hover:text-emerald-700 lg:text-[2.2rem] xl:text-[2.45rem]">
                   GLOW UP
                 </span>
-                <span className="font-bold text-lg lg:text-xl tracking-wider text-teal-700 uppercase border-l-2 border-emerald-500/80 pl-2">
+                <span className="mt-1 block text-[1.25rem] font-black leading-none tracking-[0.025em] text-emerald-800 lg:text-[1.45rem] xl:text-[1.65rem]">
                   SKIN {CLINIC_CONFIG.spelling}
+                </span>
+                <span className="mt-1.5 block text-[9px] font-semibold tracking-[0.28em] text-slate-500 lg:text-[10px]">
+                  {CLINIC_CONFIG.subLine}
                 </span>
               </div>
 
-              <div className="flex sm:hidden flex-col leading-tight">
-                <span className="font-extrabold text-lg tracking-tight text-slate-900">
-                  GLOW UP
-                </span>
-                <span className="font-bold text-xs tracking-wider text-teal-700 uppercase">
-                  SKIN {CLINIC_CONFIG.spelling}
-                </span>
-              </div>
-
-              <div className="text-[10px] sm:text-xs font-semibold text-slate-600 tracking-wider uppercase mt-0.5">
-                {CLINIC_CONFIG.subLine}
+              <div className="sm:hidden">
+                <span className="block text-lg font-black tracking-tight text-emerald-800">GLOW UP</span>
+                <span className="block text-xs font-extrabold tracking-wide text-emerald-800">SKIN {CLINIC_CONFIG.spelling}</span>
               </div>
             </div>
           </a>
 
-          <nav id="desktop-navigation" aria-label="Main Navigation" className="hidden lg:flex items-center gap-7">
-            <ul className="flex items-center gap-6 text-sm font-semibold text-slate-700">
+          <nav id="desktop-navigation" aria-label="Main Navigation" className="hidden lg:flex items-center gap-4 xl:gap-6">
+            <ul className="flex items-center gap-4 xl:gap-5 text-sm font-semibold text-slate-700">
               {navLinks.map((link) => (
                 <li key={link.label}>
                   <a
-                    id={`nav-link-${link.label.toLowerCase().replace(/[\s&]+/g, '-')}`}
                     href={link.href}
                     onClick={(e) => handleLinkClick(e, link.href)}
-                    className="hover:text-teal-700 transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-teal-700 hover:after:w-full after:transition-all"
+                    className="relative whitespace-nowrap py-2 transition-colors hover:text-emerald-700 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-emerald-600 after:transition-all hover:after:w-full"
                   >
                     {link.label}
                   </a>
@@ -123,112 +97,54 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
               ))}
             </ul>
 
-            <div className="flex items-center gap-3">
-              <a
-                href={`tel:${CLINIC_CONFIG.primaryPhone.replace(/\s+/g, '')}`}
-                className="inline-flex items-center gap-1.5 text-slate-700 hover:text-teal-700 text-xs font-semibold px-3 py-2 rounded-lg border border-slate-200 hover:border-teal-200 transition-colors"
-                title="Call Clinic"
-              >
-                <Phone className="w-3.5 h-3.5 text-teal-700" />
-                <span>Call Clinic</span>
-              </a>
-
-              <button
-                id="desktop-book-appointment-btn"
-                type="button"
-                onClick={onBookClick}
-                className="inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-800 text-white font-semibold text-sm px-4.5 py-2.5 rounded-lg shadow-sm hover:shadow transition-all duration-200 active:scale-[0.98] cursor-pointer"
-              >
-                <Calendar className="w-4 h-4" aria-hidden="true" />
-                <span>Request Appointment</span>
-              </button>
-            </div>
-          </nav>
-
-          <div className="flex lg:hidden items-center gap-2">
-            <a
-              href={`tel:${CLINIC_CONFIG.primaryPhone.replace(/\s+/g, '')}`}
-              className="p-2 text-teal-700 bg-teal-50 rounded-lg hover:bg-teal-100 transition-colors"
-              aria-label="Call Clinic directly"
-            >
-              <Phone className="w-4 h-4" />
-            </a>
-
             <button
-              id="mobile-quick-book-btn"
+              id="desktop-book-appointment-btn"
               type="button"
               onClick={onBookClick}
-              className="inline-flex items-center gap-1.5 bg-teal-700 hover:bg-teal-800 text-white text-xs font-semibold px-3 py-2 rounded-lg transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-emerald-700 px-4 py-3 text-sm font-bold text-white shadow-md shadow-emerald-900/15 transition hover:bg-emerald-800 hover:shadow-lg active:scale-[0.98]"
             >
-              <Calendar className="w-3.5 h-3.5" />
-              <span>Book</span>
+              <Calendar className="h-4 w-4" aria-hidden="true" />
+              <span>Book Appointment</span>
             </button>
+          </nav>
 
-            <button
-              id="mobile-menu-toggle-btn"
-              type="button"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-slate-700 hover:text-teal-700 hover:bg-slate-100 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 cursor-pointer"
-              aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-              aria-expanded={isMobileMenuOpen}
-            >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          <div className="flex items-center gap-2 lg:hidden">
+            <a href={`tel:${CLINIC_CONFIG.primaryPhone.replace(/\s+/g, '')}`} className="rounded-xl bg-emerald-50 p-2.5 text-emerald-700" aria-label="Call Clinic">
+              <Phone className="h-4 w-4" />
+            </a>
+            <button type="button" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="rounded-xl p-2.5 text-slate-700 hover:bg-slate-100" aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'} aria-expanded={isMobileMenuOpen}>
+              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
         </div>
       </div>
 
       {isMobileMenuOpen && (
-        <div
-          id="mobile-navigation-drawer"
-          className="lg:hidden bg-white border-b border-slate-200 shadow-xl transition-all duration-200 px-4 pt-3 pb-6"
-        >
-          <div className="border-b border-slate-100 pb-3 mb-3">
-            <div className="font-extrabold text-lg text-slate-900">{CLINIC_CONFIG.clinicName}</div>
-            <div className="text-xs font-semibold text-teal-700 tracking-wide">{CLINIC_CONFIG.subLine}</div>
-            <div className="text-[11px] text-slate-500 mt-0.5">Jamalpur, Aligarh, Uttar Pradesh</div>
+        <div className="border-b border-slate-200 bg-white px-4 pb-6 pt-3 shadow-xl lg:hidden">
+          <div className="mb-3 border-b border-slate-100 pb-3">
+            <div className="text-lg font-black text-emerald-800">{CLINIC_CONFIG.clinicName}</div>
+            <div className="mt-1 text-xs font-semibold tracking-wide text-slate-500">{CLINIC_CONFIG.subLine}</div>
           </div>
-
           <nav aria-label="Mobile Navigation">
             <ul className="flex flex-col space-y-1">
               {navLinks.map((link) => (
                 <li key={link.label}>
-                  <a
-                    id={`mobile-nav-link-${link.label.toLowerCase().replace(/[\s&]+/g, '-')}`}
-                    href={link.href}
-                    onClick={(e) => handleLinkClick(e, link.href)}
-                    className="flex items-center justify-between py-3 px-3 rounded-lg text-base font-medium text-slate-800 hover:bg-teal-50 hover:text-teal-700 transition-colors"
-                  >
+                  <a href={link.href} onClick={(e) => handleLinkClick(e, link.href)} className="flex items-center justify-between rounded-xl px-3 py-3 text-base font-semibold text-slate-800 transition hover:bg-emerald-50 hover:text-emerald-700">
                     <span>{link.label}</span>
-                    <ChevronRight className="w-4 h-4 text-slate-400" />
+                    <ChevronRight className="h-4 w-4 text-slate-400" />
                   </a>
                 </li>
               ))}
             </ul>
           </nav>
-
-          <div className="mt-4 pt-3 border-t border-slate-100 space-y-2.5">
-            <a
-              href={`tel:${CLINIC_CONFIG.primaryPhone.replace(/\s+/g, '')}`}
-              className="w-full flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold py-2.5 px-4 rounded-xl text-sm transition-colors"
-            >
-              <Phone className="w-4 h-4 text-teal-700" />
-              <span>Call: {CLINIC_CONFIG.primaryPhone}</span>
-            </a>
-
-            <button
-              id="mobile-drawer-book-btn"
-              type="button"
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                onBookClick();
-              }}
-              className="w-full flex items-center justify-center gap-2 bg-teal-700 hover:bg-teal-800 text-white font-semibold py-3 px-4 rounded-xl shadow-sm transition-colors text-base cursor-pointer"
-            >
-              <Calendar className="w-5 h-5" />
-              <span>Request Consultation</span>
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={() => { setIsMobileMenuOpen(false); onBookClick(); }}
+            className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-700 px-4 py-3 font-bold text-white shadow-sm"
+          >
+            <Calendar className="h-5 w-5" />
+            <span>Book Appointment</span>
+          </button>
         </div>
       )}
     </header>
