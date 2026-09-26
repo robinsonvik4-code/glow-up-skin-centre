@@ -124,8 +124,9 @@ export const AppointmentForm: React.FC<AppointmentFormProps> = ({ selectedTreatm
         consent: formData.consent ? 'Agreed' : 'No',
       });
 
-      // Post submission directly to Netlify static endpoint
-      const response = await fetch('/', {
+      // Post to the static Netlify form-registration page so the submission
+      // is handled by Netlify Forms after deployment.
+      const response = await fetch('/netlify-form.html', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: formPayload.toString(),
